@@ -41,7 +41,7 @@ of the usage of the `tsx` library.
 
 ### Db Diagram
 
-[Click here to check the diagram of the database](https://dbdiagram.io/d/Watch_me-67f409154f7afba184a9d40e)
+[Click here to check the database diagram](https://dbdiagram.io/d/Watch_me-67f409154f7afba184a9d40e)
 
 ### Figma Prototype
 
@@ -49,19 +49,9 @@ of the usage of the `tsx` library.
 
 ### Setup
 
-To setup the project, first run the Docker container:
-```sh
-docker compose up
-```
-
-Then, install the dependencies:
+To setup the project, first install the dependencies:
 ```sh
 npm install
-```
-
-Then, create the development database, migrate it and seed it:
-```sh
-npm run db:create:dev && npm run db:migrate:dev && npm run db:seed:dev
 ```
 
 Then run the web app:
@@ -73,13 +63,7 @@ Then visit the [API documentation](http://localhost:3000/docs).
 
 ### Testing
 
-First, setup the test database:
-
-```sh
-npm run db:create:test && npm run db:migrate:test
-```
-
-Then run the tests:
+Run the tests:
 
 ```sh
 npm test
