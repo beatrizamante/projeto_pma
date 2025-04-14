@@ -2,12 +2,14 @@
 
 ### About
 
-This application has as an objective to upload a video and search a given person's body hash through the frames. 
+This application has as an objective to search for human body hashes through re-Id in video captures and return their label.
 
+For now, an user will have to upload a video and the application will search a given person's body hash through the frames,
+given that the body hash has been saved in the database. 
 
 ## Features
 
-Currently, the app has the following features implemented:
+Currently, the app will have the following features implemented:
 
 - **User Management**  
   - **Admin routes**
@@ -39,11 +41,11 @@ of the usage of the `tsx` library.
 
 ### Db Diagram
 
-[Click here to check the diagram of the database(https://dbdiagram.io/d/Watch_me-67f409154f7afba184a9d40e)]
+[Click here to check the diagram of the database](https://dbdiagram.io/d/Watch_me-67f409154f7afba184a9d40e)
 
 ### Figma Prototype
 
-[Click here to check the figma screen prototype(https://www.figma.com/design/pQCtP3qGJfhZh2EJbtzGmv/Watch-me?node-id=0-1&p=f&t=MiokvOPfrbSa1Rzt-0)]
+[Click here to check the figma screen prototype](https://www.figma.com/design/pQCtP3qGJfhZh2EJbtzGmv/Watch-me?node-id=0-1&p=f&t=MiokvOPfrbSa1Rzt-0)
 
 ### Setup
 
