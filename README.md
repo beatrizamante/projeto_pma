@@ -34,12 +34,12 @@ Currently, the app will have the following features implemented:
 
 ## Development Checklist
 
-- []. Login session 
-- []. Admin area for managing users 
-- []. Admin area for uploading and deleting a person's body hash 
-- []. User area for managing videos
-- []. User area for finding a person through a video
-- []. User profile
+[]. Login session 
+[]. Admin area for managing users 
+[]. Admin area for uploading and deleting a person's body hash 
+[]. User area for managing videos
+[]. User area for finding a person through a video
+[]. User profile
 
 ## Db Diagram
 
@@ -73,7 +73,8 @@ npm test
 
 ### Sprint Run 
 
- > ####**How pointscale work**
+ > **How pointscale work**
+ > 
  > Once a task is set, the developer can pontuate it by the following rules: 
  >  - 1 point: Completed in 4 hours;
  >  - 2 points: Completed in 8 hours;
@@ -86,9 +87,9 @@ npm test
 - []  Setup the project environment :: 1 point
 
 ## 2. Task 2:
-- [] Create navbar and footer main components :: 1 point
-- [] Create buttons and color/stylesheet :: 1 points
-- [] Create cards and side navbar :: 2 points
+[] Create navbar and footer main components :: 1 point
+[] Create buttons and color/stylesheet :: 1 points
+[] Create cards and side navbar :: 2 points
 
 ## Task 3: 
 - [] Create layout and login page :: 1 points
