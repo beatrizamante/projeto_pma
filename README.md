@@ -17,12 +17,12 @@ Currently, the app will have the following features implemented:
     - Find a user (`GET /users/:userId`) 
     - Find all users (`GET /users`) 
     - Delete a user (`GET /users`) 
+    - Create a person's hash (`POST /people`)
+    - Delete a hash (`DELETE /people/:personId`)
     
   - **User routes** 
-    - Create a person's hash (`POST /people`)
     - List all users hashes (`GET /people`)
     - Find a hash (`GET /people/:personId`)
-    - Delete a hash (`DELETE /people/:personId`)
     - Upload video (`POST /videos`)
     - Find your videos (`GET /videos`)
     - Find a video (`GET /videos/:videoId`)
@@ -32,24 +32,26 @@ Currently, the app will have the following features implemented:
     - Logout a user (`POST /logout`)
 
 
-## Development
+## Development Checklist
 
-The project uses [tsx](https://tsx.is/) to run TypeScript. All the necessary
-npm scripts are in package.json, but feel free to add any other if needed.
-To interact with Knex, use `npm run knex` instead of using `npx knex` because
-of the usage of the `tsx` library.
+- [ ]. Login session 
+- [ ]. Admin area for managing users 
+- [ ]. Admin area for uploading and deleting a person's body hash 
+- [ ]. User area for managing videos
+- [ ]. User area for finding a person through a video
+- [ ]. User profile
 
-### Db Diagram
+## Db Diagram
 
 [Click here to check the database diagram](https://dbdiagram.io/d/Watch_me-67f409154f7afba184a9d40e)
 
-### Figma Prototype
+## Figma Prototype
 
 [Click here to check the figma screen prototype](https://www.figma.com/design/pQCtP3qGJfhZh2EJbtzGmv/Watch-me?node-id=0-1&p=f&t=MiokvOPfrbSa1Rzt-0)
 
-### Setup
+## Setup
 
-To setup the project, first install the dependencies:
+To setup the project, first install the dependencies: 
 ```sh
 npm install
 ```
@@ -61,10 +63,11 @@ npm run dev
 
 Then visit the [API documentation](http://localhost:3000/docs).
 
-### Testing
+## Testing
 
 Run the tests:
 
 ```sh
 npm test
 ```
+
