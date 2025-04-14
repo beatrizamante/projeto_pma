@@ -71,3 +71,35 @@ Run the tests:
 npm test
 ```
 
+### Sprint Run 
+
+ > ####**How pointscale work**
+ > Once a task is set, the developer can pontuate it by the following rules: 
+ >  - 1 point: Completed in 4 hours;
+ >  - 2 points: Completed in 8 hours;
+ >  - 3 points: Completed in 16 hours;
+ >  - 4 points: Completed in half a week;
+ >  - 6 points: Completed in a whole week.
+
+
+## 1. Task 1: 
+- [ ]  Setup the project environment :: 1 point
+
+## 2. Task 2:
+- [ ] Create navbar and footer main components :: 1 point
+- [ ] Create buttons and color/stylesheet :: 1 points
+- [ ] Create cards and side navbar :: 2 points
+
+## Task 3: 
+- [ ] Create layout and login page :: 1 points
+- [ ] Create user and admin main pages :: 2 points
+
+## Task 4: 
+- [ ] Create CRUD forms for user and person managing :: 2 points
+- [ ] Create listing pages for videos, users and people :: 3 points
+- [ ] Create contexts :: 2 points
+
+## Task 5: 
+- [ ] Test front end components :: 4 points
+- [ ] Connect with backend Api :: 2 points
+- [ ] Create targeting screen draw to user found person on the video with label :: 3 points
