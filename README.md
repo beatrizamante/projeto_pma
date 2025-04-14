@@ -34,12 +34,12 @@ Currently, the app will have the following features implemented:
 
 ## Development Checklist
 
-[ ] Login session 
-[ ] Admin area for managing users 
-[ ] Admin area for uploading and deleting a person's body hash 
-[ ] User area for managing videos
-[ ] User area for finding a person through a video
-[ ] User profile
+- [ ] Login session 
+- [ ] Admin area for managing users 
+- [ ] Admin area for uploading and deleting a person's body hash 
+- [ ] User area for managing videos
+- [ ] User area for finding a person through a video
+- [ ] User profile
 
 ## Db Diagram
 
