@@ -34,12 +34,12 @@ Currently, the app will have the following features implemented:
 
 ## Development Checklist
 
-- [ ]. Login session 
-- [ ]. Admin area for managing users 
-- [ ]. Admin area for uploading and deleting a person's body hash 
-- [ ]. User area for managing videos
-- [ ]. User area for finding a person through a video
-- [ ]. User profile
+- []. Login session 
+- []. Admin area for managing users 
+- []. Admin area for uploading and deleting a person's body hash 
+- []. User area for managing videos
+- []. User area for finding a person through a video
+- []. User profile
 
 ## Db Diagram
 
@@ -83,23 +83,23 @@ npm test
 
 
 ## 1. Task 1: 
-- [ ]  Setup the project environment :: 1 point
+- []  Setup the project environment :: 1 point
 
 ## 2. Task 2:
-- [ ] Create navbar and footer main components :: 1 point
-- [ ] Create buttons and color/stylesheet :: 1 points
-- [ ] Create cards and side navbar :: 2 points
+- [] Create navbar and footer main components :: 1 point
+- [] Create buttons and color/stylesheet :: 1 points
+- [] Create cards and side navbar :: 2 points
 
 ## Task 3: 
-- [ ] Create layout and login page :: 1 points
-- [ ] Create user and admin main pages :: 2 points
+- [] Create layout and login page :: 1 points
+- [] Create user and admin main pages :: 2 points
 
 ## Task 4: 
-- [ ] Create CRUD forms for user and person managing :: 2 points
-- [ ] Create listing pages for videos, users and people :: 3 points
-- [ ] Create contexts :: 2 points
+- [] Create CRUD forms for user and person managing :: 2 points
+- [] Create listing pages for videos, users and people :: 3 points
+- [] Create contexts :: 2 points
 
 ## Task 5: 
-- [ ] Test front end components :: 4 points
-- [ ] Connect with backend Api :: 2 points
-- [ ] Create targeting screen draw to user found person on the video with label :: 3 points
+- [] Test front end components :: 4 points
+- [] Connect with backend Api :: 2 points
+- [] Create targeting screen draw to user found person on the video with label :: 3 points
