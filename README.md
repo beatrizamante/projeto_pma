@@ -28,6 +28,8 @@ Currently, the app will have the following features implemented:
     - Find a video (`GET /videos/:videoId`)
     - Delete you video (`DELETE /videos/:videoId/delete`)
     - Find people on video (`GET /people/:videoId/find`)
+    - Register a user (`POST /register`)
+    - Edit profile (`POST /profile`)
     - Login a user (`POST /login`)
     - Logout a user (`POST /logout`)
 
