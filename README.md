@@ -61,8 +61,6 @@ Then run the web app:
 npm run dev
 ```
 
-Then visit the [API documentation](http://localhost:3000/docs).
-
 ## Testing
 
 Run the tests:
