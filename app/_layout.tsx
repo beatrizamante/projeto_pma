@@ -1,4 +1,5 @@
 import React from "react";
+import '../global.css';
 import { ActionSheetProvider } from "@expo/react-native-action-sheet";
 import { Stack } from "expo-router";
 
@@ -8,12 +9,12 @@ export default function Layout() {
       <Stack>
         <Stack.Screen
           name="index"
-          options={{ headerTitle: "Login", headerShown: false }}
+          options={{ headerTitle: "", headerShown: false }}
         />
         <Stack.Screen
-          name="Listagem"
+          name=""
           options={{
-            headerTitle: "Listagem",
+            headerTitle: "",
             headerShown: true,
           }}
         />
