@@ -86,7 +86,7 @@ npm test
 
 
 ## 1. Task 1: 
-- [ ]  Setup the project environment :: 1 point
+- [X]  Setup the project environment :: 1 point
 
 ## 2. Task 2:
 - [ ] Create navbar and footer main components :: 1 point
