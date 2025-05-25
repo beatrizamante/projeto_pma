@@ -11,7 +11,7 @@ export default function Button({ onPress, content }: ButtonProps) {
     <View>
       <TouchableOpacity 
       onPress={onPress} 
-      className="bg-semidark px-[30px] py-3 w-[160px] h-[36px] flex justify-center items-center rounded-[42px] border-semilight border shadow-black shadow-lg">
+      className="bg-semidark px-[30px] py-3 w-[160px] h-[36px] flex justify-center items-center rounded-[25px] border-semilight border shadow-black shadow-lg">
         <Text className="text-semilight text-xl font-semibold text-center">{content}</Text>
       </TouchableOpacity>
     </View>

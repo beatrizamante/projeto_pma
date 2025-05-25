@@ -12,11 +12,8 @@ export default function Home() {
       <Text>HOME</Text>
       <Text>HOME</Text>
 
-        <Button content="Random" onPress={function (): void {
-          throw new Error('Function not implemented.')
-        } }/>
-        <Input label={'This is a label'}/>
-
+        <Button content="Random" onPress={() => {}}/>
+        <Input label="username"/>
       </View>
     </View>
   )
