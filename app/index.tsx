@@ -4,7 +4,7 @@ import React from 'react'
 export default function Home() {
   return (
     <View>
-     <Text>HOME</Text>
+      <Text>HOME</Text>
     </View>
   )
 }
