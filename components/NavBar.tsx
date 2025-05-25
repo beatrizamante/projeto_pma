@@ -1,12 +1,10 @@
 import { View, Text, Image, StyleSheet } from "react-native";
 import React from "react";
-import { useActionSheet } from "@expo/react-native-action-sheet";
-import { router } from "expo-router";
 
 export default function NavBar() {
 
   return (
-    <View style={style.container}>
+    <View className="h-[86px], min-w-full justify-between">
       <View>
         <Image
           source={require("../assets/icon.png")}

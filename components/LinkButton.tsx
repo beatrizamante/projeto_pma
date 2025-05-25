@@ -8,16 +8,14 @@ import {
   
   type ImageButtonProps = {
     onPress: () => void;
-    testID?: string;
   };
   
   export default function LinkButton({
     onPress,
-    testID
   }: ImageButtonProps) {
     return (
       <View>
-        <TouchableOpacity onPress={onPress} style={styles.button} testID={testID}>
+        <TouchableOpacity onPress={onPress} style={styles.button}>
             <Text style={styles.text}>Link to GitHub</Text>
         </TouchableOpacity>
       </View>

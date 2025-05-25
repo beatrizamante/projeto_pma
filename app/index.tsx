@@ -1,11 +1,10 @@
 import { View, Text } from 'react-native'
 import React from 'react'
-import NavBar from '../../components/NavBar'
 
-export default function index() {
+export default function Home() {
   return (
     <View>
-     <Text>Abs</Text>
+     <Text>HOME</Text>
     </View>
   )
 }

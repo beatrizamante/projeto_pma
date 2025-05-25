@@ -7,7 +7,7 @@ export default function Layout() {
   return (
     <ActionSheetProvider>
       <Stack>
-        <Stack.Screen name="index"/>
+        <Stack.Screen name="index" options={{ title: 'Home' }} />
       </Stack>
     </ActionSheetProvider>
   );
