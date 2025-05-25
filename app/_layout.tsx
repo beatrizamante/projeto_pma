@@ -7,22 +7,7 @@ export default function Layout() {
   return (
     <ActionSheetProvider>
       <Stack>
-        <Stack.Screen
-          name="index"
-          options={{ headerTitle: "", headerShown: false }}
-        />
-        <Stack.Screen
-          name=""
-          options={{
-            headerTitle: "",
-            headerShown: true,
-          }}
-        />
-        <Stack.Screen
-          name="Sobre"
-          options={{
-          }}
-        />
+        <Stack.Screen name="index"/>
       </Stack>
     </ActionSheetProvider>
   );
