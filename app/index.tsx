@@ -1,6 +1,7 @@
 import { View, Text } from 'react-native'
 import React from 'react'
-import Footer from '../components/Footer'
+import Input from '../components/form/Input'
+import Button from '../components/Button'
 
 export default function Home() {
   return (
@@ -10,18 +11,11 @@ export default function Home() {
       <Text>HOME</Text>
       <Text>HOME</Text>
       <Text>HOME</Text>
-      <Text>HOME</Text>
-      <Text>HOME</Text>
-      <Text>HOME</Text>
-      <Text>HOME</Text>
-      <Text>HOME</Text>
-      <Text>HOME</Text>
-      <Text>HOME</Text>
-      <Text>HOME</Text>
-      <Text>HOME</Text>
-      <Text>HOME</Text>
-      <Text>HOME</Text>
-      <Text>HOME</Text>
+
+        <Button content="Random" onPress={function (): void {
+          throw new Error('Function not implemented.')
+        } }/>
+        <Input label={'This is a label'}/>
 
       </View>
     </View>

@@ -1,10 +1,15 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-export default function Input() {
+type InputProps = {
+  label: string;  
+};
+
+export default function Input({ label }: InputProps) {
   return (
     <View>
-      <Text>Input</Text>
+      <Text>{label}</Text>
+      <input  />
     </View>
   )
 }
