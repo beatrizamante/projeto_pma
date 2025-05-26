@@ -89,9 +89,9 @@ npm test
 - [X]  Setup the project environment :: 1 point
 
 ## 2. Task 2:
-- [ ] Create navbar and footer main components :: 1 point
-- [ ] Create buttons and color/stylesheet :: 1 points
-- [ ] Create cards and side navbar :: 2 points
+- [X] Create navbar and footer main components :: 1 point
+- [X] Create buttons and color/stylesheet :: 1 points
+- [X] Create cards and side navbar :: 2 points
 
 ## Task 3: 
 - [ ] Create layout and login page :: 1 points
