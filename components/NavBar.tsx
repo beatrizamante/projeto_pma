@@ -22,7 +22,7 @@ export default function NavBar() {
     >
       <View className="py-6 px-6">
         <Image
-          source={require("../assets/favicon.svg")}
+          source={require("../assets/icon.png")}
           className="w-10 h-10"
         />
       </View>
