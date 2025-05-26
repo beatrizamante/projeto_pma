@@ -1,10 +1,10 @@
-import { View, Text, ImageBackground } from "react-native";
+import { View, ImageBackground, Text } from "react-native";
 import React from "react";
 import Footer from "../components/Footer";
 import Input from "../components/form/Input";
 import Button from "../components/Button";
 
-export default function Home() {
+export default function SignUp() {
   return (
     <ImageBackground
       source={require("../assets/background.png")}
@@ -13,9 +13,14 @@ export default function Home() {
     >
       <View className="flex-1 justify-center items-center mt-10 h-full">
         <View className="flex flex-col justify-center items-center space-y-6">
-          <Input label="login" />
+          <Text className="text-darker text-center text-xl mb-6 font-semibold">
+            Enter information for sign up:
+          </Text>
+          <Input label="username" />
+          <Input label="email" />
           <Input label="password" />
-          <Button content="Join Our Reign!" onPress={() => {}} />
+          <Input label="confirm password" />
+          <Button content="Sign Up!" onPress={() => {}} />
         </View>
       </View>
       <Footer />

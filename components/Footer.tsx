@@ -7,7 +7,7 @@ export default function Footer() {
   };
 
   return (
-    <View className="absolute bottom-0 left-0 right-0 h-[141px] bg-darker flex-row justify-between px-6 items-end py-6">
+    <View className="absolute bottom-0 left-0 right-0 h-[141px] bg-darker flex flex-row justify-between px-6 items-end py-6">
       <Text className="text-lg text-lighter font-semibold">
         © 2025 WatchMe — All rights reserved
       </Text>
