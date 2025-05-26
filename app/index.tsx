@@ -1,4 +1,4 @@
-import { View, Text, ImageBackground } from "react-native";
+import { View, Text, ImageBackground, TouchableOpacity } from "react-native";
 import React from "react";
 import Footer from "../components/Footer";
 import Input from "../components/form/Input";
@@ -16,6 +16,12 @@ export default function Home() {
           <Input label="login" />
           <Input label="password" />
           <Button content="Join Our Reign!" onPress={() => {}} />
+          <Text className="pt-6 text-darker font-semibold text-lg">
+            Don’t have an account yet?{" "}
+          </Text>
+          <TouchableOpacity>
+            <Text className="text-xl text-semidark font-semibold">Sign Up! </Text>
+          </TouchableOpacity>
         </View>
       </View>
       <Footer />
