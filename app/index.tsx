@@ -12,7 +12,7 @@ export default function Home() {
       className="flex-1 flex-col justify-center items-center h-full w-full bg-semilight"
     >
       <View className="flex-1 justify-center items-center mt-10 h-full">
-        <View className="flex flex-col justify-center items-center space-y-6">
+        <View className="flex flex-col justify-center items-center gap-4">
           <Input label="login" />
           <Input label="password" />
           <Button content="Join Our Reign!" onPress={() => {}} />
