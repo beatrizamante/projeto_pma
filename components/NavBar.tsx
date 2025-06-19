@@ -11,7 +11,7 @@ export default function NavBar() {
 
   return (
     <View
-      className="flex-row items-center justify-between h-[86px] min-w-full bg-lighter"
+      className="sticky flex-row items-center justify-between h-[86px] min-w-full bg-lighter mb-6"
       style={{
         shadowColor: "#000",
         shadowOpacity: 1,
