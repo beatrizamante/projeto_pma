@@ -36,7 +36,7 @@ Currently, the app will have the following features implemented:
 
 ## Development Checklist
 
-- [ ] Login session 
+- [X] Login session 
 - [ ] Admin area for managing users 
 - [ ] Admin area for uploading and deleting a person's body hash 
 - [ ] User area for managing videos
@@ -94,7 +94,7 @@ npm test
 - [X] Create cards and side navbar :: 2 points
 
 ## Task 3: 
-- [ ] Create layout and login page :: 1 points
+- [X] Create layout and login page :: 1 points
 - [ ] Create user and admin main pages :: 2 points
 
 ## Task 4: 
