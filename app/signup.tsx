@@ -3,8 +3,11 @@ import React from "react";
 import Footer from "../components/Footer";
 import Input from "../components/form/Input";
 import Button from "../components/Button";
+import { useRouter } from "expo-router";
 
 export default function SignUp() {
+  const router = useRouter();
+
   return (
     <>
       <ScrollView
@@ -21,10 +24,34 @@ export default function SignUp() {
             <Text className="text-darker text-center text-xl font-semibold">
               Enter information for sign up:
             </Text>
-            <Input label="username" />
-            <Input label="email" />
-            <Input label="password" />
-            <Input label="confirm password" />
+            <Input
+              label="username"
+              value={""}
+              handler={function (text: string): void {
+                throw new Error("Function not implemented.");
+              }}
+            />
+            <Input
+              label="email"
+              value={""}
+              handler={function (text: string): void {
+                throw new Error("Function not implemented.");
+              }}
+            />
+            <Input
+              label="password"
+              value={""}
+              handler={function (text: string): void {
+                throw new Error("Function not implemented.");
+              }}
+            />
+            <Input
+              label="confirm password"
+              value={""}
+              handler={function (text: string): void {
+                throw new Error("Function not implemented.");
+              }}
+            />
             <Button content="Sign Up!" onPress={() => {}} />
           </View>
         </View>

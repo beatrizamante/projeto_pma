@@ -3,8 +3,32 @@ import React from "react";
 import Footer from "../components/Footer";
 import Input from "../components/form/Input";
 import Button from "../components/Button";
+import { useRouter } from "expo-router";
 
 export default function Home() {
+  const router = useRouter();
+
+  const [login, onChangeLogin] = React.useState("");
+  const [password, onChangePassword] = React.useState("");
+
+  const [err, setErr] = React.useState("");
+
+  const handleLogin = () => {
+    if (login === "fulano" && password === "123") {
+      setErr("");
+      router.replace("/(admin)");
+    } else if (login === "admin" && password === "123") {
+      setErr("");
+      router.replace("/(user)");
+    } else {
+      setErr("Invalid Login.");
+    }
+  };
+
+  const handleGoToSignUp = () => {
+    router.push("/signup");
+  };
+
   return (
     <>
       <ScrollView
@@ -17,13 +41,13 @@ export default function Home() {
         keyboardShouldPersistTaps="handled"
       >
         <View className="flex flex-col justify-center items-center gap-4">
-          <Input label="login" />
-          <Input label="password" />
-          <Button content="Join Our Reign!" onPress={() => {}} />
+          <Input label="login" value={login} handler={onChangeLogin} />
+          <Input label="password" value={password} handler={onChangePassword} />
+          <Button content="Join Our Reign!" onPress={handleLogin} />
           <Text className="pt-6 text-darker font-semibold text-lg">
             Don’t have an account yet?{" "}
           </Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={handleGoToSignUp}>
             <Text className="text-xl text-semidark font-semibold">
               Sign Up!{" "}
             </Text>
