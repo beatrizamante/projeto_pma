@@ -95,7 +95,7 @@ npm test
 
 ## Task 3: 
 - [X] Create layout and login page :: 1 points
-- [ ] Create user and admin main pages :: 2 points
+- [X] Create user and admin main pages :: 2 points
 
 ## Task 4: 
 - [ ] Create CRUD forms for user and person managing :: 2 points
