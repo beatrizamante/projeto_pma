@@ -1,20 +1,18 @@
-import { View, Text, Pressable, Image } from 'react-native';
-import * as Linking from 'expo-linking';
+import { View, Text, Pressable, Image } from "react-native";
+import * as Linking from "expo-linking";
 
 export default function Footer() {
   const handleGitHubPress = () => {
-    Linking.openURL('https://github.com/beatrizamante/projeto_pma');
+    Linking.openURL("https://github.com/beatrizamante/projeto_pma");
   };
 
   return (
-    <View className="fixed bottom-0 left-0 right-0 h-[141px] bg-darker flex flex-row justify-between px-6 items-end py-6">
+    <View className="relative bottom-0 left-0 right-0 h-[141px] bg-darker flex flex-row justify-between px-6 items-end py-6">
       <Text className="text-lg text-lighter font-semibold">
         © 2025 WatchMe — All rights reserved
       </Text>
       <Pressable onPress={handleGitHubPress}>
-         <Image
-          source={require("../assets/github.svg")}
-        ></Image>
+        <Image source={require("../assets/github.svg")}></Image>
       </Pressable>
     </View>
   );

@@ -1,5 +1,5 @@
-import { View, Text, TextInput } from 'react-native'
-import React from 'react'
+import { View, Text, TextInput } from "react-native";
+import React from "react";
 
 type InputProps = {
   label: string;
@@ -11,9 +11,7 @@ export default function Input({ label }: InputProps) {
       <Text className="absolute top-1 left-4 text-lg font-semibold text-semidark px-1">
         {label}
       </Text>
-      <TextInput
-        className="h-full text-lg text-darker "
-      />
+      <TextInput className="h-full text-lg text-darker " />
     </View>
-  )
+  );
 }
