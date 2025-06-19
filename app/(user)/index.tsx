@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, ScrollView } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import React from "react";
 import { useRouter } from "expo-router";
 import Footer from "../../components/Footer";
@@ -18,17 +18,19 @@ export default function UserHome() {
         }}
       >
         <View className="flex flex-col justify-center items-center gap-4">
-          <Card
-            title="Manage Videos"
-            content="Look for the person you need to find"
-            uri={require("../../assets/manage_videos.png")}
-          ></Card>
-          <Card
-            title="Finding People"
-            content="Create or manage existing videos"
-            uri={require("../../assets/finding_people.png")}
-          ></Card>
-          <View className="flex w-max-[269px] w-full">
+          <View className="flex flex-row justify-between items-start gap-4 w-full px-10">
+            <Card
+              title="Manage Videos"
+              content="Look for the person you need to find"
+              uri={require("../../assets/manage_videos.png")}
+            ></Card>
+            <Card
+              title="Finding People"
+              content="Create or manage existing videos"
+              uri={require("../../assets/finding_people.png")}
+            ></Card>
+          </View>
+          <View className="w-[200px] self-center mt-6">
             <Text className="pt-6 text-darker font-semibold text-lg">
               If you can’t find a specific person’s hash, please, contact your
               administrative user. They’ll be the one to create one for you.{" "}

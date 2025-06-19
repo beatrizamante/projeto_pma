@@ -2,6 +2,7 @@ import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import React from "react";
 import { useRouter } from "expo-router";
 import Footer from "../../components/Footer";
+import Card from "../../components/Card";
 
 export default function AdminHome() {
   const router = useRouter();
@@ -17,14 +18,40 @@ export default function AdminHome() {
         }}
       >
         <View className="flex flex-col justify-center items-center gap-4">
-          <Text className="pt-6 text-darker font-semibold text-lg">
-            Don’t have an account yet?{" "}
-          </Text>
-          <TouchableOpacity onPress={() => {}}>
-            <Text className="text-xl text-semidark font-semibold">
-              Sign Up!{" "}
+          <View className="flex flex-row justify-between items-start gap-4 w-full px-10">
+            <Card
+              title="Manage Users"
+              content="Create or manage existing users"
+              uri={require("../../assets/manage_users.png")}
+            ></Card>
+            <View className="flex justify-center items-center gap-2">
+              <Card
+                title="Manage People"
+                content="Create or manage a body hash"
+                uri={require("../../assets/manage_people.png")}
+              ></Card>
+              <TouchableOpacity className="flex w-[140px]">
+                <Text className="text-lg text-darker font-semibold text-center">
+                  How to create hashes_
+                </Text>
+                <Text className="text-lg text-darker font-semibold text-center">
+                  Click Here
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+          <View className="w-[200px] self-center mt-6 gap-2">
+            <Text className="pt-6 text-darker font-semibold text-lg text-center">
+              Need to use a real time video stream? No fret, please, access the
+              documentation below and see how to connect across websocket
+              connections
             </Text>
-          </TouchableOpacity>
+            <TouchableOpacity onPress={() => {}}>
+              <Text className="text-xl text-semidark font-semibold text-center">
+                Getting Started
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </ScrollView>
       <Footer />

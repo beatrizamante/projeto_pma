@@ -6,7 +6,7 @@ export default function AdminLayout() {
   return (
     <ActionSheetProvider>
       <Stack>
-        <Stack.Screen name="index" options={{ title: "Admin Home" }} />
+        <Stack.Screen name="index" options={{ headerShown: false }} />
       </Stack>
     </ActionSheetProvider>
   );

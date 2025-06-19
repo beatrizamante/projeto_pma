@@ -6,7 +6,7 @@ export default function UserLayout() {
   return (
     <ActionSheetProvider>
       <Stack>
-        <Stack.Screen name="index" options={{ title: "User Home" }} />
+        <Stack.Screen name="index" options={{ headerShown: false }} />
       </Stack>
     </ActionSheetProvider>
   );
