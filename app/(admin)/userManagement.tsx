@@ -4,8 +4,10 @@ import { useRouter } from "expo-router";
 import Button from "../../components/Button";
 import Footer from "../../components/Footer";
 import Input from "../../components/form/Input";
+import { useAuth } from "../../stores/useAuth";
 
 export default function userManagement() {
+  const logInfo = useAuth();
   const router = useRouter();
 
   return (

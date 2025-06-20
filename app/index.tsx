@@ -4,9 +4,12 @@ import Footer from "../components/Footer";
 import Input from "../components/form/Input";
 import Button from "../components/Button";
 import { useRouter } from "expo-router";
+import { useAuth } from "../stores/useAuth";
+import { role } from "../interfaces/user";
 
 export default function Home() {
   const router = useRouter();
+  const logInfo = useAuth((state) => state.login);
 
   const [login, onChangeLogin] = React.useState("");
   const [password, onChangePassword] = React.useState("");
@@ -16,10 +19,18 @@ export default function Home() {
   const handleLogin = () => {
     if (login === "fulano" && password === "123") {
       setErr("");
-      router.replace("/(admin)");
+      logInfo({
+        username: login,
+        role: "user",
+      });
+      router.replace("/(user)");
     } else if (login === "admin" && password === "123") {
       setErr("");
-      router.replace("/(user)");
+      logInfo({
+        username: login,
+        role: "admin",
+      });
+      router.replace("/(admin)");
     } else {
       setErr("Invalid Login.");
     }
