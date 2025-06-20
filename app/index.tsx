@@ -35,7 +35,7 @@ export default function Home() {
         contentContainerStyle={{
           paddingHorizontal: 24,
           paddingTop: 24,
-          paddingBottom: 120,
+          paddingBottom: 160,
           flexGrow: 1,
         }}
         keyboardShouldPersistTaps="handled"

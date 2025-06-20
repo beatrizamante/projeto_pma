@@ -23,12 +23,14 @@ export default function AdminHome() {
               title="Manage Users"
               content="Create or manage existing users"
               uri={require("../../assets/manage_users.png")}
+              onPress={() => {}}
             ></Card>
             <View className="flex justify-center items-center gap-2">
               <Card
                 title="Manage People"
                 content="Create or manage a body hash"
                 uri={require("../../assets/manage_people.png")}
+                onPress={() => {}}
               ></Card>
               <TouchableOpacity className="flex w-[140px]">
                 <Text className="text-lg text-darker font-semibold text-center">

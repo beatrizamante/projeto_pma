@@ -1,14 +1,19 @@
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
 
 type ItemProps = {
   content: string;
+  onPress?: () => void;
 };
 
 export default function Item({ content }: ItemProps) {
   return (
-    <View className="w-[300px] h-[60px] border border-semidark rounded-[25px] bg-semilight shadow-black shadow-lg flex justify-center items-center">
-      <Text className="text-darker font-semibold text-xl text-center">{content}</Text>
-    </View>
+    <TouchableOpacity className="pb-4">
+      <View className="w-[300px] h-[60px] border border-semidark rounded-[25px] bg-semilight shadow-black shadow-lg flex justify-center items-center">
+        <Text className="text-darker font-semibold text-xl text-center">
+          {content}
+        </Text>
+      </View>
+    </TouchableOpacity>
   );
 }

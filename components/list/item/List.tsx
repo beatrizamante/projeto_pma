@@ -1,30 +1,24 @@
-import {
-  View,
-  Text,
-  SectionList,
-  SafeAreaView,
-} from "react-native";
+import { FlatList, View } from "react-native";
 import React from "react";
-import { SafeAreaProvider } from "react-native-safe-area-context";
 import Item from "./Item";
 
 type ListProps = {
-  data: any;
-}
+  data: { id: number; name: string }[];
+};
 
 export default function List({ data }: ListProps) {
-  const DATA = data;
   return (
-    <SafeAreaProvider>
-      <SafeAreaView >
-        <SectionList
-          sections={DATA}
-          keyExtractor={(item, index) => item.name + index}
+    <>
+      <View className="h-[250px]">
+        <FlatList
+          data={data}
+          keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => (
-            <Item content={item.name}/>
+            <Item content={item.name} onPress={() => {}} />
           )}
+          className="flex gap-y-4 p-4 bg-semilight"
         />
-      </SafeAreaView>
-    </SafeAreaProvider>
+      </View>
+    </>
   );
 }
