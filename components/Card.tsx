@@ -9,17 +9,27 @@ import {
 import React from "react";
 
 type ImageCardProps = {
-  onPress?: () => void;
+  id: string;
+  onPress: (id: string) => void;
   title: string;
   content: string;
   uri: ImageSourcePropType;
 };
 
-export default function Card({ onPress, title, content, uri }: ImageCardProps) {
+export default function Card({
+  id,
+  onPress,
+  title,
+  content,
+  uri,
+}: ImageCardProps) {
   return (
-    <View className="w-[165px] h-[228px] flex flex-col justify-center items-center border border-darker rounded-[25px] shadow-black shadow-lg bg-semilight">
+    <View
+      id={id}
+      className="w-[165px] h-[228px] flex flex-col justify-center items-center border border-darker rounded-[25px] shadow-black shadow-lg bg-semilight"
+    >
       <TouchableOpacity
-        onPress={onPress}
+        onPress={() => onPress(id)}
         className="flex justify-center items-center gap-4"
       >
         <Image

@@ -7,6 +7,15 @@ import Card from "../../components/Card";
 export default function AdminHome() {
   const router = useRouter();
 
+  const handlerNav = (id: string) => {
+    if (id === "users") {
+      router.replace("/userList");
+    } else if (id === "people") {
+      router.replace("/people");
+    } else {
+      console.log("Unknown:", id);
+    }
+  };
   return (
     <>
       <ScrollView
@@ -20,17 +29,19 @@ export default function AdminHome() {
         <View className="flex flex-col justify-center items-center gap-4">
           <View className="flex flex-row justify-between items-start gap-4 w-full px-10">
             <Card
+              id="users"
               title="Manage Users"
               content="Create or manage existing users"
               uri={require("../../assets/manage_users.png")}
-              onPress={() => {}}
+              onPress={handlerNav}
             ></Card>
             <View className="flex justify-center items-center gap-2">
               <Card
+                id="people"
                 title="Manage People"
                 content="Create or manage a body hash"
                 uri={require("../../assets/manage_people.png")}
-                onPress={() => {}}
+                onPress={handlerNav}
               ></Card>
               <TouchableOpacity className="flex w-[140px]">
                 <Text className="text-lg text-darker font-semibold text-center">
