@@ -1,23 +1,15 @@
 import { View, Text, ScrollView } from "react-native";
-import React, { useState } from "react";
+import React from "react";
 import { useRouter } from "expo-router";
 import Button from "../../components/Button";
 import Footer from "../../components/Footer";
 import List from "../../components/list/item/List";
 import data from "../../mocks/names";
-import { useSelectedUser } from "../../stores/useSelectedUser";
+import { useSelectedItem } from "../../stores/useSelectedItem";
 
 export default function userList() {
-  const { storeUser } = useSelectedUser();
+  const { store } = useSelectedItem();
   const router = useRouter();
-  const [clicks, useClicks] = useState[0];
-
-  const handleUserClick = (id: string) => {
-    if (clicks === 2) {
-      storeUser(id);
-      router.push("/(admin)/userManagement");
-    }
-  };
 
   return (
     <>
@@ -34,7 +26,11 @@ export default function userList() {
             <Text className="text-darker text-center text-lg font-semibold">
               Double click an user to edit:
             </Text>
-            <List data={data} />
+            <List
+              data={data}
+              onDoubleClick={(id: string) => {}}
+              onSingleClickReset={() => {}}
+            />
             <Button content="Create new user!" onPress={() => {}} />
           </View>
         </View>
