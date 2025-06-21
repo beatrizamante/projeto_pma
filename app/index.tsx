@@ -52,8 +52,18 @@ export default function Home() {
         keyboardShouldPersistTaps="handled"
       >
         <View className="flex flex-col justify-center items-center gap-4">
-          <Input label="login" value={login} handler={onChangeLogin} />
-          <Input label="password" value={password} handler={onChangePassword} />
+          <Input
+            label="login"
+            value={login}
+            handler={onChangeLogin}
+            isPassword={false}
+          />
+          <Input
+            label="password"
+            value={password}
+            handler={onChangePassword}
+            isPassword={true}
+          />
           <Button content="Join Our Reign!" onPress={handleLogin} />
           <Text className="pt-6 text-darker font-semibold text-lg">
             Don’t have an account yet?{" "}

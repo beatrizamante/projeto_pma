@@ -9,6 +9,10 @@ import data from "../../mocks/names";
 export default function userList() {
   const router = useRouter();
 
+  const createHandler = () => {
+    router.replace("/userManagement");
+  };
+
   return (
     <>
       <ScrollView
@@ -25,7 +29,7 @@ export default function userList() {
               Double click an user to edit:
             </Text>
             <List data={data} navigateTo="/(admin)/userManagement" />
-            <Button content="Create new user!" onPress={() => {}} />
+            <Button content="Create new user!" onPress={createHandler} />
           </View>
         </View>
       </ScrollView>

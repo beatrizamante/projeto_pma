@@ -30,6 +30,7 @@ export default function SignUp() {
               handler={function (text: string): void {
                 throw new Error("Function not implemented.");
               }}
+              isPassword={false}
             />
             <Input
               label="email"
@@ -37,6 +38,7 @@ export default function SignUp() {
               handler={function (text: string): void {
                 throw new Error("Function not implemented.");
               }}
+              isPassword={false}
             />
             <Input
               label="password"
@@ -44,6 +46,7 @@ export default function SignUp() {
               handler={function (text: string): void {
                 throw new Error("Function not implemented.");
               }}
+              isPassword={true}
             />
             <Input
               label="confirm password"
@@ -51,6 +54,7 @@ export default function SignUp() {
               handler={function (text: string): void {
                 throw new Error("Function not implemented.");
               }}
+              isPassword={true}
             />
             <Button content="Sign Up!" onPress={() => {}} />
           </View>
