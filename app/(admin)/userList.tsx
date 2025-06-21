@@ -5,10 +5,8 @@ import Button from "../../components/Button";
 import Footer from "../../components/Footer";
 import List from "../../components/list/item/List";
 import data from "../../mocks/names";
-import { useSelectedItem } from "../../stores/useSelectedItem";
 
 export default function userList() {
-  const { store } = useSelectedItem();
   const router = useRouter();
 
   return (
@@ -26,11 +24,7 @@ export default function userList() {
             <Text className="text-darker text-center text-lg font-semibold">
               Double click an user to edit:
             </Text>
-            <List
-              data={data}
-              onDoubleClick={(id: string) => {}}
-              onSingleClickReset={() => {}}
-            />
+            <List data={data} navigateTo="/(admin)/userManagement" />
             <Button content="Create new user!" onPress={() => {}} />
           </View>
         </View>

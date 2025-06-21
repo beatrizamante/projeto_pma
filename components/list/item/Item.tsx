@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity } from "react-native";
-import React, { useRef } from "react";
+import React from "react";
 
 type ItemProps = {
   content: string;
