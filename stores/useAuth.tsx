@@ -1,14 +1,14 @@
-import { create } from 'zustand';
+import { create } from "zustand";
 
 type AuthState = {
- isAuthenticated: boolean;
- user: null | { username: string, email: string }
-}
+  isAuthenticated: boolean;
+  user: null | { username: string; role: string };
+};
 
 type AuthAction = {
-  login: (user: { username: string, email: string }) => void;
+  login: (user: { username: string; role: string }) => void;
   logout: () => void;
-}
+};
 
 export const useAuth = create<AuthState & AuthAction>((set) => ({
   isAuthenticated: false,

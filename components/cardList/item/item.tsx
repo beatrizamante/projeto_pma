@@ -3,7 +3,6 @@ import {
   Image,
   Text,
   ImageSourcePropType,
-  StyleSheet,
   TouchableOpacity,
 } from "react-native";
 import React from "react";
@@ -11,37 +10,37 @@ import React from "react";
 type ImageCardProps = {
   id: string;
   onPress: (id: string) => void;
-  title: string;
-  content: string;
-  uri: ImageSourcePropType;
+  user: string;
+  date: string;
+  image_path: ImageSourcePropType;
 };
 
 export default function Card({
   id,
   onPress,
-  title,
-  content,
-  uri,
+  user,
+  date,
+  image_path,
 }: ImageCardProps) {
   return (
     <View
       id={id}
-      className="w-[165px] h-[228px] flex flex-col justify-center items-center border border-darker rounded-[25px] shadow-black shadow-lg bg-semilight"
+      className="w-[165px] h-[228px] mb-2 mx-4 flex flex-col justify-center items-center border border-darker rounded-[25px] shadow-black shadow-lg bg-semilight"
     >
       <TouchableOpacity
         onPress={() => onPress(id)}
         className="flex justify-center items-center gap-4"
       >
         <Image
-          source={uri}
+          source={image_path}
           className="w-max-[165px] h-max-[120px] px-4"
         ></Image>
-        <View className="gap-2 px-2">
-          <Text className="text-center text-lg text-darker font-semibold">
-            {title}
+        <View className="gap-2 px-4 flex flex-col">
+          <Text className="text-center text-darker font-semibold">
+            Created {date}
           </Text>
           <Text className="text-center text-darker font-semibold">
-            {content}
+            by {user}
           </Text>
         </View>
       </TouchableOpacity>

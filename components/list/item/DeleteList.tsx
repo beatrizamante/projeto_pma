@@ -1,25 +1,24 @@
 import { FlatList, View } from "react-native";
 import React from "react";
-import Item from "./Item";
-import { useDoubleClickNavigation } from "../../../app/hooks/useDoubleClickNavigation";
+import ItemDelete from "./ItemDelete";
 
 type ListProps = {
   data: { id: number; name: string }[];
-  navigateTo: string;
 };
 
-export default function List({ data, navigateTo }: ListProps) {
-  const handlePress = useDoubleClickNavigation(navigateTo);
+export default function ListDelete({ data }: ListProps) {
+  const handleDelete = () => {};
+
   return (
     <View className="h-[250px]">
       <FlatList
         data={data}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
-          <Item
-            id={item.id.toString()}
+          <ItemDelete
             content={item.name}
-            onPress={handlePress}
+            id={item.id.toString()}
+            onPress={handleDelete}
           />
         )}
         className="flex gap-y-4 p-4 bg-semilight"
