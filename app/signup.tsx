@@ -1,12 +1,20 @@
 import { View, Text, ScrollView } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import Footer from "../components/Footer";
 import Input from "../components/form/Input";
 import Button from "../components/Button";
 import { useRouter } from "expo-router";
 
 export default function SignUp() {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [confirmPass, setConfirmPass] = useState("");
+  const [password, setPassword] = useState("");
   const router = useRouter();
+
+  const handleCreateAccount = () => {
+    router.replace("/(user)");
+  };
 
   return (
     <>
@@ -26,37 +34,29 @@ export default function SignUp() {
             </Text>
             <Input
               label="username"
-              value={""}
-              handler={function (text: string): void {
-                throw new Error("Function not implemented.");
-              }}
+              value={username}
+              handler={setUsername}
               isPassword={false}
             />
             <Input
               label="email"
-              value={""}
-              handler={function (text: string): void {
-                throw new Error("Function not implemented.");
-              }}
+              value={email}
+              handler={setEmail}
               isPassword={false}
             />
             <Input
               label="password"
-              value={""}
-              handler={function (text: string): void {
-                throw new Error("Function not implemented.");
-              }}
+              value={password}
+              handler={setPassword}
               isPassword={true}
             />
             <Input
               label="confirm password"
-              value={""}
-              handler={function (text: string): void {
-                throw new Error("Function not implemented.");
-              }}
+              value={confirmPass}
+              handler={setConfirmPass}
               isPassword={true}
             />
-            <Button content="Sign Up!" onPress={() => {}} />
+            <Button content="Sign Up!" onPress={handleCreateAccount} />
           </View>
         </View>
       </ScrollView>
