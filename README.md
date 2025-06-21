@@ -37,10 +37,10 @@ Currently, the app will have the following features implemented:
 ## Development Checklist
 
 - [X] Login session 
-- [ ] Admin area for managing users 
-- [ ] Admin area for uploading and deleting a person's body hash 
-- [ ] User area for managing videos
-- [ ] User area for finding a person through a video
+- [X] Admin area for managing users 
+- [X] Admin area for uploading and deleting a person's body hash 
+- [X] User area for managing videos
+- [X] User area for finding a person through a video
 - [ ] User profile
 
 ## Db Diagram
@@ -98,9 +98,9 @@ npm test
 - [X] Create user and admin main pages :: 2 points
 
 ## Task 4: 
-- [ ] Create CRUD forms for user and person managing :: 2 points
-- [ ] Create listing pages for videos, users and people :: 3 points
-- [ ] Create contexts :: 2 points
+- [X] Create CRUD forms for user and person managing :: 2 points
+- [X] Create listing pages for videos, users and people :: 3 points
+- [X] Create contexts :: 2 points
 
 ## Task 5: 
 - [ ] Test front end components :: 4 points
