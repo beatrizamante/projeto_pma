@@ -1,11 +1,9 @@
 import { View, Text, ScrollView, TouchableOpacity } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useRouter } from "expo-router";
 import Button from "../../components/Button";
 import Footer from "../../components/Footer";
 import Input from "../../components/form/Input";
-import { useSelectedItem } from "../../stores/useSelectedItem";
-import Icon from "../../components/list/item/Icon";
 
 type User = {
   id: string;

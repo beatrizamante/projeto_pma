@@ -1,7 +1,9 @@
 import { FlatList, useWindowDimensions, View } from "react-native";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import Card from "./item/item";
 import { useDoubleClickNavigation } from "../../app/hooks/useDoubleClickNavigation";
+import { useSelectedItem } from "../../stores/useSelectedItem";
+import { useRouter } from "expo-router";
 
 type ListProps = {
   data: {
@@ -16,7 +18,6 @@ type ListProps = {
 export default function CardList({ data, navigateTo }: ListProps) {
   const { width } = useWindowDimensions();
   const handlePress = useDoubleClickNavigation(navigateTo);
-
   const numColumns = width > 800 ? 3 : 2;
 
   return (

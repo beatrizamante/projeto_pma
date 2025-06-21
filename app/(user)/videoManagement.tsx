@@ -1,10 +1,9 @@
 import { View, Text, ScrollView, TouchableOpacity } from "react-native";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useRouter } from "expo-router";
 import Button from "../../components/Button";
 import Footer from "../../components/Footer";
-import Input from "../../components/form/Input";
-import VideoIcon from "../../components/videoIcon";
+import VideoIcon from "../../components/VideoIcon";
 
 export default function VideoManagement() {
   const router = useRouter();

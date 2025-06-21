@@ -2,8 +2,8 @@ import { View, Text, ScrollView, TouchableOpacity } from "react-native";
 import React from "react";
 import { useRouter } from "expo-router";
 import Footer from "../../components/Footer";
-import VideoIcon from "../../components/videoIcon";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import VideoIcon from "../../components/VideoIcon";
 
 export default function findPeople() {
   const router = useRouter();
