@@ -1,8 +1,15 @@
 import React from "react";
 import { ActionSheetProvider } from "@expo/react-native-action-sheet";
-import { Stack } from "expo-router";
+import { Redirect, Stack } from "expo-router";
+import { useAuth } from "../../stores/useAuth";
 
 export default function AdminLayout() {
+  const { isAuthenticated, user } = useAuth();
+
+  if (!isAuthenticated || user?.role !== "admin") {
+    return <Redirect href="/" />;
+  }
+
   return (
     <ActionSheetProvider>
       <Stack>
