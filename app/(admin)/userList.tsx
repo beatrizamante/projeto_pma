@@ -1,13 +1,23 @@
 import { View, Text, ScrollView } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { useRouter } from "expo-router";
 import Button from "../../components/Button";
 import Footer from "../../components/Footer";
 import List from "../../components/list/item/List";
 import data from "../../mocks/names";
+import { useSelectedUser } from "../../stores/useSelectedUser";
 
 export default function userList() {
+  const { storeUser } = useSelectedUser();
   const router = useRouter();
+  const [clicks, useClicks] = useState[0];
+
+  const handleUserClick = (id: string) => {
+    if (clicks === 2) {
+      storeUser(id);
+      router.push("/(admin)/userManagement");
+    }
+  };
 
   return (
     <>
