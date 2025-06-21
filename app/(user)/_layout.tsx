@@ -14,6 +14,8 @@ export default function UserLayout() {
     <ActionSheetProvider>
       <Stack>
         <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="videoList" options={{ headerShown: false }} />
+        <Stack.Screen name="videoManagement" options={{ headerShown: false }} />
       </Stack>
     </ActionSheetProvider>
   );

@@ -16,6 +16,7 @@ export default function AdminHome() {
       console.log("Unknown:", id);
     }
   };
+
   return (
     <>
       <ScrollView

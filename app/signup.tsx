@@ -13,7 +13,7 @@ export default function SignUp() {
   const router = useRouter();
 
   const handleCreateAccount = () => {
-    router.replace("/(user)");
+    router.replace("/");
   };
 
   return (
