@@ -16,6 +16,11 @@ export default function AdminLayout() {
         <Stack.Screen name="index" options={{ headerShown: false }} />
         <Stack.Screen name="userList" options={{ headerShown: false }} />
         <Stack.Screen name="userManagement" options={{ headerShown: false }} />
+        <Stack.Screen name="peopleList" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="peopleManagement"
+          options={{ headerShown: false }}
+        />
       </Stack>
     </ActionSheetProvider>
   );

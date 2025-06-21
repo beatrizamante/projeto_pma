@@ -11,7 +11,7 @@ export default function AdminHome() {
     if (id === "users") {
       router.replace("/userList");
     } else if (id === "people") {
-      router.replace("/people");
+      router.replace("/peopleList");
     } else {
       console.log("Unknown:", id);
     }

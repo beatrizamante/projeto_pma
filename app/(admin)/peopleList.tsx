@@ -1,10 +1,18 @@
 import { View, Text, ScrollView } from "react-native";
 import React from "react";
 import Footer from "../../components/Footer";
-import List from "../../components/list/item/List";
 import data from "../../mocks/names";
+import Button from "../../components/Button";
+import { useRouter } from "expo-router";
+import ListDelete from "../../components/list/item/DeleteList";
 
 export default function peopleList() {
+  const router = useRouter();
+
+  const createHandler = () => {
+    router.replace("/peopleManagement");
+  };
+
   return (
     <>
       <ScrollView
@@ -18,12 +26,10 @@ export default function peopleList() {
         <View className="flex-1 justify-between items-center px-6">
           <View className="flex flex-col justify-center items-center gap-4 mb-2">
             <Text className="text-darker text-center text-lg font-semibold">
-              Select an user to find:
+              Click on the icon to delete:
             </Text>
-            <List data={data} navigateTo="/(user)/findPeople" />
-            <Text className="text-darker text-center text-lg font-semibold">
-              Can’t find who you’re looking for? Contact you admin to add them!
-            </Text>
+            <ListDelete data={data} />
+            <Button content="Create new person!" onPress={createHandler} />
           </View>
         </View>
       </ScrollView>

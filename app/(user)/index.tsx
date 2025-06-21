@@ -30,14 +30,14 @@ export default function UserHome() {
           <View className="flex flex-row justify-between items-start gap-4 w-full px-10">
             <Card
               title="Manage Videos"
-              content="Look for the person you need to find"
+              content="Create or manage existing videos"
               uri={require("../../assets/manage_videos.png")}
               id="video"
               onPress={handlerNav}
             />
             <Card
               title="Finding People"
-              content="Create or manage existing videos"
+              content="Look for the person you need to find"
               uri={require("../../assets/finding_people.png")}
               id="people"
               onPress={handlerNav}

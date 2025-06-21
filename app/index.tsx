@@ -70,7 +70,7 @@ export default function Home() {
           </Text>
           <TouchableOpacity onPress={handleGoToSignUp}>
             <Text className="text-xl text-semidark font-semibold">
-              Sign Up!{" "}
+              Sign Up!
             </Text>
           </TouchableOpacity>
         </View>
