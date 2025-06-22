@@ -2,9 +2,9 @@ import z from "zod/v4";
 import { db } from "../database";
 import { Video, VideoWithoutId } from "../../app/interfaces/video";
 
-export const initUser = async () => {
+export const initVideos = async () => {
     return await db.execAsync(
-        `CREATE TABLE IF NOT EXISTS people(
+        `CREATE TABLE IF NOT EXISTS videos (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             image_path TEXT NOT NULL,
             user_id INTEGER NOT NULL,

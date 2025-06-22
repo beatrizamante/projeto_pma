@@ -10,8 +10,6 @@ import { useSelectedItem } from "../../stores/useSelectedItem";
 import { Person } from "../interfaces/person";
 import ConfirmationModal from "../../components/ConfirmationModal";
 
-//TODO Add confirm delete modal
-
 export default function peopleList() {
   const router = useRouter();
   const { selectedId, clear } = useSelectedItem();
