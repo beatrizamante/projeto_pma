@@ -3,7 +3,6 @@ import {
   Image,
   Text,
   ImageSourcePropType,
-  StyleSheet,
   TouchableOpacity,
 } from "react-native";
 import React from "react";

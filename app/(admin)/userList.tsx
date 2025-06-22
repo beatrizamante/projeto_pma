@@ -4,7 +4,6 @@ import { useRouter } from "expo-router";
 import Button from "../../components/Button";
 import Footer from "../../components/Footer";
 import List from "../../components/list/item/List";
-import data from "../../mocks/names";
 import { User } from "../interfaces/user";
 import { list } from "../../infrastructure/repository/UserRepository";
 

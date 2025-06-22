@@ -5,3 +5,5 @@ export interface User {
     password: string;
     role: string;
 }
+
+export type UserWithoutId = Omit<User, 'id'>;

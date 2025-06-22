@@ -1,8 +1,6 @@
 import z from "zod/v4";
 import { db } from "../database";
-import { User } from "../../app/interfaces/user";
-
-export type UserWithoutId = Omit<User, 'id'>;
+import { User, UserWithoutId } from "../../app/interfaces/user";
 
 export const initUsers = async () => {
     return await db.execAsync(

@@ -1,10 +1,9 @@
 import { View, Text, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
 import Footer from "../../components/Footer";
-import data from "../../mocks/names";
 import Button from "../../components/Button";
 import { useRouter } from "expo-router";
-import ListDelete from "../../components/list/item/DeleteList";
+import ListDelete from "../../components/list/DeleteList";
 import { erase, list } from "../../infrastructure/repository/PeopleRepository";
 import { useSelectedItem } from "../../stores/useSelectedItem";
 import { Person } from "../interfaces/person";

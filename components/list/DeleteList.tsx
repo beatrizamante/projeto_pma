@@ -1,6 +1,6 @@
 import { FlatList, View } from "react-native";
 import React from "react";
-import ItemDelete from "./ItemDelete";
+import ItemDelete from "./item/ItemDelete";
 
 type ListProps = {
   data: any[];
