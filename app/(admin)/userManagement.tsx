@@ -14,6 +14,7 @@ import {
   UserSchema,
 } from "../../infrastructure/repository/UserRepository";
 import DropDown from "../../components/form/Dropdown";
+import ConfirmationModal from "../../components/ConfirmationModal";
 
 export default function UserManagement() {
   const router = useRouter();
@@ -22,6 +23,7 @@ export default function UserManagement() {
   const [email, setEmail] = useState("");
   const [role, setRole] = useState<"user" | "admin">("user");
   const [password, setPassword] = useState("");
+  const [confirmModalVisible, setConfirmModalVisible] = useState(false);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -43,6 +45,14 @@ export default function UserManagement() {
     fetchUser();
   }, [selectedId]);
 
+  const handleConfirmDelete = async () => {
+    await erase(selectedId!);
+    clear();
+    console.log("DELETE CONFIRMED!");
+    setConfirmModalVisible(false);
+    router.replace("/userList");
+  };
+
   const handleUpdate = async () => {
     await patch(selectedId!, { name, email, password, role });
     console.log("Atualizar usuário:", { name, email, role, password });
@@ -51,10 +61,8 @@ export default function UserManagement() {
   };
 
   const handleDelete = async () => {
-    await erase(selectedId!);
+    setConfirmModalVisible(true);
     console.log("Deletar usuário:", selectedId);
-    clear();
-    router.replace("/(admin)/userList");
   };
 
   const handleCreate = async () => {
@@ -138,6 +146,13 @@ export default function UserManagement() {
         </View>
       </ScrollView>
       <Footer />
+
+      <ConfirmationModal
+        content="user"
+        visible={confirmModalVisible}
+        onConfirm={handleConfirmDelete}
+        onCancel={() => setConfirmModalVisible(false)}
+      />
     </>
   );
 }

@@ -8,11 +8,15 @@ import ListDelete from "../../components/list/item/DeleteList";
 import { erase, list } from "../../infrastructure/repository/PeopleRepository";
 import { useSelectedItem } from "../../stores/useSelectedItem";
 import { Person } from "../interfaces/person";
+import ConfirmationModal from "../../components/ConfirmationModal";
+
+//TODO Add confirm delete modal
 
 export default function peopleList() {
   const router = useRouter();
   const { selectedId, clear } = useSelectedItem();
   const [people, setPeople] = useState<Person[]>([]);
+  const [confirmModalVisible, setConfirmModalVisible] = useState(false);
 
   useEffect(() => {
     const fetchPeople = async () => {
@@ -23,12 +27,20 @@ export default function peopleList() {
     fetchPeople();
   });
 
+  const handleConfirmDelete = async () => {
+    await erase(selectedId!);
+    clear();
+    console.log("DELETE CONFIRMED!");
+    setConfirmModalVisible(false);
+    router.replace("/peopleList");
+  };
+
   const createHandler = () => {
     router.replace("/peopleManagement");
   };
 
   const handleDelete = async () => {
-    await erase(selectedId!);
+    setConfirmModalVisible(true);
     console.log("Deletar usuário:", selectedId);
     clear();
     router.replace("/(admin)/userList");
@@ -55,6 +67,13 @@ export default function peopleList() {
         </View>
       </ScrollView>
       <Footer />
+
+      <ConfirmationModal
+        content="video"
+        visible={confirmModalVisible}
+        onConfirm={handleConfirmDelete}
+        onCancel={() => setConfirmModalVisible(false)}
+      />
     </>
   );
 }

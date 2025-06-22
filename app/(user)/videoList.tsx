@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "expo-router";
 import Button from "../../components/Button";
 import Footer from "../../components/Footer";
-import data from "../../mocks/videos";
 import CardList from "../../components/cardList/cardList";
 import ActionModal from "../../components/ActionModal";
 import ConfirmationModal from "../../components/ConfirmationModal";
@@ -15,6 +14,8 @@ export default function videoList() {
   const router = useRouter();
   const [videos, setVideos] = useState<Video[]>([]);
   const { selectedId, clear, store } = useSelectedItem();
+  const [actionModalVisible, setActionModalVisible] = useState(false);
+  const [confirmModalVisible, setConfirmModalVisible] = useState(false);
 
   useEffect(() => {
     const fetchVideo = async () => {
@@ -23,15 +24,18 @@ export default function videoList() {
       setVideos(allVideos);
     };
     fetchVideo();
-  });
+  }, []);
 
-  const [actionModalVisible, setActionModalVisible] = useState(false);
-  const [confirmModalVisible, setConfirmModalVisible] = useState(false);
+  useEffect(() => {
+    if (selectedId) {
+      setActionModalVisible(true);
+    }
+  }, [selectedId]);
 
-  const handleFind = (id: string) => {
+  const handleFind = () => {
     console.log("Find action");
     router.replace("/(user)/peopleList");
-    store(id);
+    store(selectedId!);
     setActionModalVisible(false);
   };
 
@@ -68,7 +72,7 @@ export default function videoList() {
             <Text className="text-darker text-center text-lg font-semibold">
               Select a video to manage:
             </Text>
-            <CardList data={videos} navigateTo="/(user)/videoManagement" />
+            <CardList data={videos} />
             <Button content="Create new video!" onPress={createHandler} />
           </View>
         </View>
@@ -78,7 +82,7 @@ export default function videoList() {
       <ActionModal
         visible={actionModalVisible}
         onClose={() => setActionModalVisible(false)}
-        onFind={() => handleFind}
+        onFind={handleFind}
         onDelete={handleDelete}
       />
 
