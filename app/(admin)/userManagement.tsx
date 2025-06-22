@@ -15,13 +15,7 @@ import {
   UserSchema,
 } from "../../infrastructure/repository/UserRepository";
 import DropDown from "../../components/form/Dropdown";
-
-type User = {
-  id: string;
-  username: string;
-  email: string;
-  role: string;
-};
+import { User } from "../interfaces/user";
 
 export default function UserManagement() {
   const router = useRouter();

@@ -22,7 +22,7 @@ export const store = async (user: UserWithoutId) => {
     )
 }
 
-export const patch = async (id: string, user: User) => {
+export const patch = async (id: string, user: UserWithoutId) => {
     return await db.runAsync(`UPDATE users SET username = ?, email = ?, password = ?, role = ? WHERE id = ?`,
         [id, user.username, user.email, user.password, user.role]
     )

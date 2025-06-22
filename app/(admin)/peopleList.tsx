@@ -5,12 +5,22 @@ import data from "../../mocks/names";
 import Button from "../../components/Button";
 import { useRouter } from "expo-router";
 import ListDelete from "../../components/list/item/DeleteList";
+import { erase } from "../../infrastructure/repository/PeopleRepository";
+import { useSelectedItem } from "../../stores/useSelectedItem";
 
 export default function peopleList() {
   const router = useRouter();
+  const { selectedId, clear } = useSelectedItem();
 
   const createHandler = () => {
     router.replace("/peopleManagement");
+  };
+
+  const handleDelete = async () => {
+    await erase(selectedId!);
+    console.log("Deletar usuário:", selectedId);
+    clear();
+    router.replace("/(admin)/userList");
   };
 
   return (
@@ -28,7 +38,7 @@ export default function peopleList() {
             <Text className="text-darker text-center text-lg font-semibold">
               Click on the icon to delete:
             </Text>
-            <ListDelete data={data} />
+            <ListDelete data={data} handleDelete={handleDelete} />
             <Button content="Create new person!" onPress={createHandler} />
           </View>
         </View>

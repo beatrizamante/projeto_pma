@@ -4,11 +4,10 @@ import ItemDelete from "./ItemDelete";
 
 type ListProps = {
   data: { id: number; name: string }[];
+  handleDelete: (id: string) => void;
 };
 
-export default function ListDelete({ data }: ListProps) {
-  const handleDelete = () => {};
-
+export default function ListDelete({ data, handleDelete }: ListProps) {
   return (
     <View className="h-[250px]">
       <FlatList
