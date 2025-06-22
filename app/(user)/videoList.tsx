@@ -9,12 +9,12 @@ import ActionModal from "../../components/ActionModal";
 import ConfirmationModal from "../../components/ConfirmationModal";
 import { useSelectedItem } from "../../stores/useSelectedItem";
 import { Video } from "../interfaces/video";
-import { list } from "../../infrastructure/repository/VideoRepository";
+import { erase, list } from "../../infrastructure/repository/VideoRepository";
 
 export default function videoList() {
   const router = useRouter();
-  const { store } = useSelectedItem();
   const [videos, setVideos] = useState<Video[]>([]);
+  const { selectedId, clear, store } = useSelectedItem();
 
   useEffect(() => {
     const fetchVideo = async () => {
@@ -41,9 +41,12 @@ export default function videoList() {
     setConfirmModalVisible(true);
   };
 
-  const handleConfirmDelete = () => {
+  const handleConfirmDelete = async () => {
+    await erase(selectedId!);
+    clear();
     console.log("DELETE CONFIRMED!");
     setConfirmModalVisible(false);
+    router.replace("/videoList");
   };
 
   const createHandler = () => {
@@ -73,7 +76,7 @@ export default function videoList() {
       <Footer />
 
       <ActionModal
-        visible={confirmModalVisible}
+        visible={actionModalVisible}
         onClose={() => setActionModalVisible(false)}
         onFind={() => handleFind}
         onDelete={handleDelete}
