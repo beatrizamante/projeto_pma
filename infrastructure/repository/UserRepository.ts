@@ -1,5 +1,8 @@
 import z from "zod/v4";
 import { db } from "../database";
+import { User } from "../../app/interfaces/user";
+
+export type UserWithoutId = Omit<User, 'id'>;
 
 export const initUser = async () => {
     return await db.execAsync(
@@ -13,28 +16,36 @@ export const initUser = async () => {
     );
 }
 
-export const store = async (user: z.infer<typeof UserSchema>) => {
+export const store = async (user: UserWithoutId) => {
     return await db.runAsync(`INSERT INTO users (username, email, role, password) VALUES (?, ?, ?, ?)`,
         [user.username, user.email, user.role, user.password]
     )
 }
 
-export const patch = async (id: string, user: z.infer<typeof UserSchema>) => {
-    return await db.runAsync(`UPDATE users SET username = ?, email = ?, password = w?, role = ? WHERE id = ?`),
-        [id, user.username, user.email, user.role]
+export const patch = async (id: string, user: User) => {
+    return await db.runAsync(`UPDATE users SET username = ?, email = ?, password = ?, role = ? WHERE id = ?`,
+        [id, user.username, user.email, user.password, user.role]
+    )
 }
 
 export const erase = async (id: string) => {
     return await db.runAsync(`DELETE FROM users WHERE id = ?`,
-        [id],)
+        [id]
+    )
 }
 
-export const get = async (id: string) => {
-    return await db.getFirstAsync(`SELECT * FROM users WHERE id = ?`), [id];
+export const findByUsername = async (username: string): Promise<User | null> => {
+    return await db.getFirstAsync(`SELECT id, username, password FROM users WHERE username = ?`, [username]);
 }
 
-export const list = async () => {
-    return await db.getFirstAsync(`SELECT * FROM users`);
+export const get = async (id: string): Promise<User | null> => {
+    return await db.getFirstAsync(`SELECT * FROM users WHERE id = ?`, [id]
+
+    );
+}
+
+export const list = async (): Promise<User[] | null> => {
+    return await db.getAllAsync(`SELECT * FROM users`);
 }
 
 export const UserSchema = z.object({

@@ -1,11 +1,12 @@
-import { View, Text, TouchableOpacity, ScrollView } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView, Alert } from "react-native";
 import React from "react";
 import Footer from "../components/Footer";
 import Input from "../components/form/Input";
 import Button from "../components/Button";
 import { useRouter } from "expo-router";
 import { useAuth } from "../stores/useAuth";
-import { role } from "../interfaces/user";
+import { findByUsername } from "../infrastructure/repository/UserRepository";
+import { User } from "./interfaces/user";
 
 export default function Home() {
   const router = useRouter();
@@ -16,23 +17,31 @@ export default function Home() {
 
   const [err, setErr] = React.useState("");
 
-  const handleLogin = () => {
-    if (login === "fulano" && password === "123") {
+  const handleLogin = async () => {
+    const user: User | null = await findByUsername(login);
+
+    if (!user) {
+      Alert.alert("This username does not exist, please, create an account;");
+      return;
+    }
+
+    if (password === user.password) {
       setErr("");
       logInfo({
-        username: login,
-        role: "user",
+        id: user.id,
+        username: user.username,
+        role: user.role,
       });
-      router.replace("/(user)");
-    } else if (login === "admin" && password === "123") {
-      setErr("");
-      logInfo({
-        username: login,
-        role: "admin",
-      });
-      router.replace("/(admin)");
     } else {
-      setErr("Invalid Login.");
+      Alert.alert("Invalid login, please, check your password");
+    }
+
+    if (user.role === "user") {
+      setErr("");
+      router.replace("/(user)");
+    } else {
+      setErr("");
+      router.replace("/(admin)");
     }
   };
 

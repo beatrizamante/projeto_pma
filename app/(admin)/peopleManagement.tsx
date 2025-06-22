@@ -1,23 +1,33 @@
-import { View, Text, ScrollView, TouchableOpacity } from "react-native";
+import { View, Text, ScrollView, TouchableOpacity, Alert } from "react-native";
 import React, { useState } from "react";
 import { useRouter } from "expo-router";
 import Button from "../../components/Button";
 import Footer from "../../components/Footer";
 import Input from "../../components/form/Input";
-
-type User = {
-  id: string;
-  username: string;
-  email: string;
-  role: string;
-};
+import {
+  PeopleSchema,
+  store,
+} from "../../infrastructure/repository/PeopleRepository";
+import { useAuth } from "../../stores/useAuth";
 
 export default function PeopleManagement() {
   const router = useRouter();
-
+  const logInfo = useAuth();
   const [label, setLabel] = useState<string>("");
 
-  const handleCreate = () => {
+  const handleCreate = async () => {
+    const user_id = logInfo.user!.id;
+    const parse = PeopleSchema.safeParse({
+      label,
+      user_id,
+    });
+
+    if (!parse.success) {
+      console.log(parse.error.format());
+      Alert.alert("Validation Error", "Please check your inputs");
+      return;
+    }
+    await store(parse.data);
     console.log("Criar nova pessoa:", { label });
     router.replace("/(admin)/peopleList");
   };

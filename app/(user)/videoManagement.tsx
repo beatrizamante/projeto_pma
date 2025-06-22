@@ -1,15 +1,35 @@
-import { View, Text, ScrollView, TouchableOpacity } from "react-native";
+import { View, Text, ScrollView, TouchableOpacity, Alert } from "react-native";
 import React from "react";
 import { useRouter } from "expo-router";
 import Button from "../../components/Button";
 import Footer from "../../components/Footer";
 import VideoIcon from "../../components/VideoIcon";
+import {
+  store,
+  VideoSchema,
+} from "../../infrastructure/repository/VideoRepository";
+import { useAuth } from "../../stores/useAuth";
 
 export default function VideoManagement() {
   const router = useRouter();
+  const logInfo = useAuth();
 
-  const handleCreate = () => {
-    console.log("Criar novo vídeo.");
+  const handleCreate = async () => {
+    const user_id = logInfo.user!.id;
+    const image_path = "./bin";
+
+    const parse = VideoSchema.safeParse({
+      image_path,
+      user_id,
+    });
+
+    if (!parse.success) {
+      console.log(parse.error.format());
+      Alert.alert("Validation Error", "Please check your inputs");
+      return;
+    }
+    await store(parse.data);
+    console.log("Criar nova pessoa:", { image_path });
     router.replace("/(user)/videoList");
   };
 
