@@ -28,7 +28,7 @@ export const get = async (id: string) => {
 }
 
 export const list = async () => {
-    await db.getAllAsync(`SELECT * FROM videos JOIN users ON videos.user_id = users.id`);
+    await db.getAllAsync(`SELECT videos.id, videos.image_path, videos.created_at, users.username FROM videos JOIN users ON videos.user_id = users.id`);
 }
 
 export const VideoSchema = z.object({

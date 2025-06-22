@@ -27,7 +27,7 @@ export const get = async (id: string) => {
 }
 
 export const list = async () => {
-    await db.getAllAsync(`SELECT * FROM people JOIN users ON people.user_id = users.id`);
+    await db.getAllAsync(`SELECT people.id, people.label FROM people JOIN users ON people.user_id = users.id`);
 }
 
 export const PeopleSchema = z.object({
