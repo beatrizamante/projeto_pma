@@ -1,16 +1,27 @@
 import { View, Text, ScrollView } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Footer from "../../components/Footer";
 import data from "../../mocks/names";
 import Button from "../../components/Button";
 import { useRouter } from "expo-router";
 import ListDelete from "../../components/list/item/DeleteList";
-import { erase } from "../../infrastructure/repository/PeopleRepository";
+import { erase, list } from "../../infrastructure/repository/PeopleRepository";
 import { useSelectedItem } from "../../stores/useSelectedItem";
+import { Person } from "../interfaces/person";
 
 export default function peopleList() {
   const router = useRouter();
   const { selectedId, clear } = useSelectedItem();
+  const [people, setPeople] = useState<Person[]>([]);
+
+  useEffect(() => {
+    const fetchPeople = async () => {
+      const allPeople = await list();
+      if (!allPeople) return;
+      setPeople(allPeople);
+    };
+    fetchPeople();
+  });
 
   const createHandler = () => {
     router.replace("/peopleManagement");
@@ -38,7 +49,7 @@ export default function peopleList() {
             <Text className="text-darker text-center text-lg font-semibold">
               Click on the icon to delete:
             </Text>
-            <ListDelete data={data} handleDelete={handleDelete} />
+            <ListDelete data={people} handleDelete={handleDelete} />
             <Button content="Create new person!" onPress={createHandler} />
           </View>
         </View>

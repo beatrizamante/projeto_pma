@@ -1,5 +1,5 @@
 import { View, Text, ScrollView } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "expo-router";
 import Button from "../../components/Button";
 import Footer from "../../components/Footer";
@@ -8,10 +8,22 @@ import CardList from "../../components/cardList/cardList";
 import ActionModal from "../../components/ActionModal";
 import ConfirmationModal from "../../components/ConfirmationModal";
 import { useSelectedItem } from "../../stores/useSelectedItem";
+import { Video } from "../interfaces/video";
+import { list } from "../../infrastructure/repository/VideoRepository";
 
 export default function videoList() {
   const router = useRouter();
   const { store } = useSelectedItem();
+  const [videos, setVideos] = useState<Video[]>([]);
+
+  useEffect(() => {
+    const fetchVideo = async () => {
+      const allVideos = await list();
+      if (!allVideos) return;
+      setVideos(allVideos);
+    };
+    fetchVideo();
+  });
 
   const [actionModalVisible, setActionModalVisible] = useState(false);
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
@@ -53,7 +65,7 @@ export default function videoList() {
             <Text className="text-darker text-center text-lg font-semibold">
               Select a video to manage:
             </Text>
-            <CardList data={data} navigateTo="/(user)/videoManagement" />
+            <CardList data={videos} navigateTo="/(user)/videoManagement" />
             <Button content="Create new video!" onPress={createHandler} />
           </View>
         </View>

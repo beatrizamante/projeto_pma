@@ -17,8 +17,8 @@ export default function SignUp() {
     const parse = UserSchema.safeParse({
       name,
       email,
-      role: "user",
       password,
+      role: "user",
     });
 
     if (!parse.success) {

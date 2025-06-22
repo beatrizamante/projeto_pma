@@ -2,16 +2,9 @@ import { FlatList, useWindowDimensions, View } from "react-native";
 import React, { useRef, useState } from "react";
 import Card from "./item/item";
 import { useDoubleClickNavigation } from "../../app/hooks/useDoubleClickNavigation";
-import { useSelectedItem } from "../../stores/useSelectedItem";
-import { useRouter } from "expo-router";
 
 type ListProps = {
-  data: {
-    id: number;
-    user: string;
-    date: string;
-    image_path: string;
-  }[];
+  data: any[];
   navigateTo: string;
 };
 

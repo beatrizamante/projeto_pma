@@ -3,7 +3,7 @@ import React from "react";
 import ItemDelete from "./ItemDelete";
 
 type ListProps = {
-  data: { id: number; name: string }[];
+  data: any[];
   handleDelete: (id: string) => void;
 };
 

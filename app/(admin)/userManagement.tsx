@@ -9,13 +9,11 @@ import Icon from "../../components/list/item/Icon";
 import {
   erase,
   get,
-  list,
   patch,
   store,
   UserSchema,
 } from "../../infrastructure/repository/UserRepository";
 import DropDown from "../../components/form/Dropdown";
-import { User } from "../interfaces/user";
 
 export default function UserManagement() {
   const router = useRouter();

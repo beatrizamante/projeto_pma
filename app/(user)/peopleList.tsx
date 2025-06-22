@@ -1,10 +1,22 @@
 import { View, Text, ScrollView } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Footer from "../../components/Footer";
 import List from "../../components/list/item/List";
-import data from "../../mocks/names";
+import { list } from "../../infrastructure/repository/PeopleRepository";
+import { Person } from "../interfaces/person";
 
 export default function peopleList() {
+  const [people, setPeople] = useState<Person[]>([]);
+
+  useEffect(() => {
+    const fetchPeople = async () => {
+      const allPeople = await list();
+      if (!allPeople) return;
+      setPeople(allPeople);
+    };
+    fetchPeople();
+  });
+
   return (
     <>
       <ScrollView
@@ -20,7 +32,7 @@ export default function peopleList() {
             <Text className="text-darker text-center text-lg font-semibold">
               Select an user to find:
             </Text>
-            <List data={data} navigateTo="/(user)/findPeople" />
+            <List data={people} navigateTo="/(user)/findPeople" />
             <Text className="text-darker text-center text-lg font-semibold">
               Can’t find who you’re looking for? Contact you admin to add them!
             </Text>

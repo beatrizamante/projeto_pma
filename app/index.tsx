@@ -11,17 +11,15 @@ import { User } from "./interfaces/user";
 export default function Home() {
   const router = useRouter();
   const logInfo = useAuth((state) => state.login);
-
   const [login, onChangeLogin] = React.useState("");
   const [password, onChangePassword] = React.useState("");
-
   const [err, setErr] = React.useState("");
 
   const handleLogin = async () => {
     const user: User | null = await findByname(login);
 
     if (!user) {
-      Alert.alert("This name does not exist, please, create an account;");
+      Alert.alert("This user does not exist, please, create an account;");
       return;
     }
 
@@ -43,6 +41,7 @@ export default function Home() {
       setErr("");
       router.replace("/(admin)");
     }
+    return;
   };
 
   const handleGoToSignUp = () => {
