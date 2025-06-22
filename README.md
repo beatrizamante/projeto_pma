@@ -60,7 +60,7 @@ npm install
 
 Then run the web app:
 ```sh
-npm run dev
+npm run start
 ```
 
 Then visit the [API documentation](http://localhost:3000/docs).
