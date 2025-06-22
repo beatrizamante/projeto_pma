@@ -8,7 +8,7 @@ import { useSelectedItem } from "../../stores/useSelectedItem";
 import Icon from "../../components/list/item/Icon";
 import {
   erase,
-  initUser,
+  get,
   list,
   patch,
   store,
@@ -20,38 +20,34 @@ import { User } from "../interfaces/user";
 export default function UserManagement() {
   const router = useRouter();
   const { selectedId, clear } = useSelectedItem();
-  const [users, setUsers] = useState<User[]>([]);
-  const [username, setUsername] = useState("");
+  const [name, setname] = useState("");
   const [email, setEmail] = useState("");
   const [role, setRole] = useState<"user" | "admin">("user");
   const [password, setPassword] = useState("");
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      const allUsers = await list();
-      setUsers(allUsers as User[]);
-
+    const fetchUser = async () => {
       if (selectedId) {
-        const user = users.find((u) => u.id === selectedId);
+        const user = await get(selectedId);
         if (user) {
-          setUsername(user.username);
+          setname(user.name);
           setEmail(user.email);
-          const allowedRoles = ["user", "admin"] as const;
-          if (allowedRoles.includes(user.role as any)) {
-            setRole(user.role as "user" | "admin");
-          } else {
-            console.warn("Role inválida no banco:", user.role);
-          }
+          setRole(user.role as "user" | "admin");
+          return;
         }
       }
+      setname("");
+      setEmail("");
+      setPassword("");
+      setRole("user");
     };
 
-    fetchUsers();
+    fetchUser();
   }, [selectedId]);
 
   const handleUpdate = async () => {
-    await patch(selectedId!, { username, email, password, role });
-    console.log("Atualizar usuário:", { username, email, role, password });
+    await patch(selectedId!, { name, email, password, role });
+    console.log("Atualizar usuário:", { name, email, role, password });
     clear();
     router.replace("/(admin)/userList");
   };
@@ -65,7 +61,7 @@ export default function UserManagement() {
 
   const handleCreate = async () => {
     const parse = UserSchema.safeParse({
-      username,
+      name,
       email,
       role,
       password,
@@ -107,14 +103,14 @@ export default function UserManagement() {
               </Text>
             </TouchableOpacity>
             <Text className="text-darker text-center font-semibold">
-              {isEditing ? `Editing ${username}` : ""}
+              {isEditing ? `Editing ${name}` : ""}
             </Text>
           </View>
 
           <Input
-            label="username"
-            value={username}
-            handler={setUsername}
+            label="name"
+            value={name}
+            handler={setname}
             isPassword={false}
           />
           <Input

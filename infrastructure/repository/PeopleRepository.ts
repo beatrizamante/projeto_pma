@@ -14,7 +14,7 @@ export const initUser = async () => {
 
 export const store = async (person: PersonWithoutId) => {
     return await db.runAsync(`INSERT INTO users (label, user_id) VALUES (?, ?)`,
-        [person.label, person.user_id]
+        [person.name, person.user_id]
     )
 }
 
@@ -37,6 +37,6 @@ export const list = async (): Promise<Person[]> => {
 }
 
 export const PeopleSchema = z.object({
-    label: z.string().min(1, "Label is required"),
-    user_id: z.number("Must be related to an user")
+    name: z.string().min(1, "Label is required"),
+    user_id: z.string("Must be related to an user")
 });

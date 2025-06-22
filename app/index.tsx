@@ -5,7 +5,7 @@ import Input from "../components/form/Input";
 import Button from "../components/Button";
 import { useRouter } from "expo-router";
 import { useAuth } from "../stores/useAuth";
-import { findByUsername } from "../infrastructure/repository/UserRepository";
+import { findByname } from "../infrastructure/repository/UserRepository";
 import { User } from "./interfaces/user";
 
 export default function Home() {
@@ -18,10 +18,10 @@ export default function Home() {
   const [err, setErr] = React.useState("");
 
   const handleLogin = async () => {
-    const user: User | null = await findByUsername(login);
+    const user: User | null = await findByname(login);
 
     if (!user) {
-      Alert.alert("This username does not exist, please, create an account;");
+      Alert.alert("This name does not exist, please, create an account;");
       return;
     }
 
@@ -29,7 +29,7 @@ export default function Home() {
       setErr("");
       logInfo({
         id: user.id,
-        username: user.username,
+        name: user.name,
         role: user.role,
       });
     } else {

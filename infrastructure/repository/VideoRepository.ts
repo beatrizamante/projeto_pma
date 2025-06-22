@@ -33,10 +33,10 @@ export const get = async (id: string): Promise<Video | null> => {
 }
 
 export const list = async (): Promise<Video[]> => {
-    return await db.getAllAsync(`SELECT videos.id, videos.image_path, videos.created_at, users.username FROM videos JOIN users ON videos.user_id = users.id`);
+    return await db.getAllAsync(`SELECT videos.id, videos.image_path, videos.created_at, users.name FROM videos JOIN users ON videos.user_id = users.id`);
 }
 
 export const VideoSchema = z.object({
     image_path: z.string().min(1, "An image pawth is required"),
-    user_id: z.number("Must be related to an user")
+    user_id: z.string("Must be related to an user")
 });

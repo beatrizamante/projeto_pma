@@ -2,11 +2,11 @@ import { create } from "zustand";
 
 type AuthState = {
   isAuthenticated: boolean;
-  user: null | { id: string; username: string; role: string };
+  user: null | { id: string; name: string; role: string };
 };
 
 type AuthAction = {
-  login: (user: { id: string; username: string; role: string }) => void;
+  login: (user: { id: string; name: string; role: string }) => void;
   logout: () => void;
 };
 

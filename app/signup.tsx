@@ -7,7 +7,7 @@ import { useRouter } from "expo-router";
 import { store, UserSchema } from "../infrastructure/repository/UserRepository";
 
 export default function SignUp() {
-  const [username, setUsername] = useState("");
+  const [name, setname] = useState("");
   const [email, setEmail] = useState("");
   const [confirmPass, setConfirmPass] = useState("");
   const [password, setPassword] = useState("");
@@ -15,7 +15,7 @@ export default function SignUp() {
 
   const handleCreateAccount = async () => {
     const parse = UserSchema.safeParse({
-      username,
+      name,
       email,
       role: "user",
       password,
@@ -61,9 +61,9 @@ export default function SignUp() {
               Enter information for sign up:
             </Text>
             <Input
-              label="username"
-              value={username}
-              handler={setUsername}
+              label="name"
+              value={name}
+              handler={setname}
               isPassword={false}
             />
             <Input

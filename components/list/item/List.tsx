@@ -4,7 +4,7 @@ import Item from "./Item";
 import { useDoubleClickNavigation } from "../../../app/hooks/useDoubleClickNavigation";
 
 type ListProps = {
-  data: { id: number; name: string }[];
+  data: any[];
   navigateTo: string;
 };
 
