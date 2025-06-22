@@ -30,7 +30,8 @@
     "react-native-web": "~0.19.13",
     "tabs": "file:",
     "zod": "^3.25.67",
-    "zustand": "^5.0.4"
+    "zustand": "^5.0.4",
+    "@react-native-picker/picker": "2.9.0"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

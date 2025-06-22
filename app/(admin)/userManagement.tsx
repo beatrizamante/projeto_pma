@@ -6,6 +6,15 @@ import Footer from "../../components/Footer";
 import Input from "../../components/form/Input";
 import { useSelectedItem } from "../../stores/useSelectedItem";
 import Icon from "../../components/list/item/Icon";
+import {
+  erase,
+  initUser,
+  list,
+  patch,
+  store,
+  UserSchema,
+} from "../../infrastructure/repository/UserRepository";
+import DropDown from "../../components/form/Dropdown";
 
 type User = {
   id: string;
@@ -17,43 +26,64 @@ type User = {
 export default function UserManagement() {
   const router = useRouter();
   const { selectedId, clear } = useSelectedItem();
-
   const [users, setUsers] = useState<User[]>([]);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
-  const [role, setRole] = useState("");
+  const [role, setRole] = useState<"user" | "admin">("user");
   const [password, setPassword] = useState("");
 
   useEffect(() => {
-    setUsers([
-      { id: "1", username: "Bea", email: "bea@gmail.com", role: "user" },
-      { id: "2", username: "Maria", email: "maria@gmail.com", role: "admin" },
-    ]);
+    const fetchUsers = async () => {
+      const allUsers = await list();
+      setUsers(allUsers as User[]);
 
-    if (selectedId) {
-      const user = users.find((u) => u.id === selectedId);
-      if (user) {
-        setUsername(user.username);
-        setEmail(user.email);
-        setRole(user.role);
+      if (selectedId) {
+        const user = users.find((u) => u.id === selectedId);
+        if (user) {
+          setUsername(user.username);
+          setEmail(user.email);
+          const allowedRoles = ["user", "admin"] as const;
+          if (allowedRoles.includes(user.role as any)) {
+            setRole(user.role as "user" | "admin");
+          } else {
+            console.warn("Role inválida no banco:", user.role);
+          }
+        }
       }
-    }
+    };
+
+    fetchUsers();
   }, [selectedId]);
 
-  const handleUpdate = () => {
+  const handleUpdate = async () => {
+    await patch(selectedId!, { username, email, password, role });
     console.log("Atualizar usuário:", { username, email, role, password });
     clear();
     router.replace("/(admin)/userList");
   };
 
-  const handleDelete = () => {
+  const handleDelete = async () => {
+    await erase(selectedId!);
     console.log("Deletar usuário:", selectedId);
     clear();
     router.replace("/(admin)/userList");
   };
 
-  const handleCreate = () => {
-    console.log("Criar novo usuário:", { username, email, role, password });
+  const handleCreate = async () => {
+    const parse = UserSchema.safeParse({
+      username,
+      email,
+      role,
+      password,
+    });
+
+    if (!parse.success) {
+      console.log(parse.error.format());
+      return;
+    }
+
+    await store(parse.data);
+    clear();
     router.replace("/(admin)/userList");
   };
 
@@ -105,12 +135,7 @@ export default function UserManagement() {
             handler={setPassword}
             isPassword={true}
           />
-          <Input
-            label="role"
-            value={role}
-            handler={setRole}
-            isPassword={false}
-          />
+          <DropDown label="role" value={role} handler={setRole} />
 
           {isEditing ? (
             <View className="flex flex-row justify-between items-center gap-4 mt-4">
