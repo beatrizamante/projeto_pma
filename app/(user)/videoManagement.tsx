@@ -10,11 +10,11 @@ export default function VideoManagement() {
 
   const handleCreate = () => {
     console.log("Criar novo vídeo.");
-    router.replace("/(user)/videoList");
+    router.push("/(user)/videoList");
   };
 
   const handleBack = () => {
-    router.replace("/(user)");
+    router.back();
   };
 
   return (

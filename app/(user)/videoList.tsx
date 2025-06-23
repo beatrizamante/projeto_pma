@@ -18,7 +18,7 @@ export default function videoList() {
 
   const handleFind = (id: string) => {
     console.log("Find action");
-    router.replace("/(user)/peopleList");
+    router.push("/(user)/peopleList");
     store(id);
     setActionModalVisible(false);
   };
