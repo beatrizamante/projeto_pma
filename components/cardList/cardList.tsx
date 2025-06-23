@@ -33,6 +33,7 @@ export default function CardList({ data, navigateTo }: ListProps) {
             image_path={require("../../assets/manage_people.png")}
           />
         )}
+        nestedScrollEnabled={true}
         className="flex flex-wrap gap-y-4 p-4 bg-semilight"
         numColumns={numColumns}
         columnWrapperStyle={{
