@@ -3,9 +3,9 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "expo-router";
 import Button from "../../components/Button";
 import Footer from "../../components/Footer";
-import List from "../../components/list/item/List";
 import { User } from "../interfaces/user";
 import { list } from "../../infrastructure/repository/UserRepository";
+import List from "../../components/list/List";
 
 export default function userList() {
   const router = useRouter();
