@@ -1,4 +1,4 @@
-import { View, Text, ScrollView } from "react-native";
+import { View, Text, ScrollView, TouchableOpacity } from "react-native";
 import React from "react";
 import Footer from "../../components/Footer";
 import data from "../../mocks/names";
@@ -10,8 +10,9 @@ export default function peopleList() {
   const router = useRouter();
 
   const createHandler = () => {
-    router.replace("/peopleManagement");
+    router.push("/peopleManagement");
   };
+
 
   return (
     <>

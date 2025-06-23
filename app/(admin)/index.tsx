@@ -9,9 +9,9 @@ export default function AdminHome() {
 
   const handlerNav = (id: string) => {
     if (id === "users") {
-      router.replace("/userList");
+      router.push("/userList");
     } else if (id === "people") {
-      router.replace("/peopleList");
+      router.push("/peopleList");
     } else {
       console.log("Unknown:", id);
     }
@@ -27,7 +27,7 @@ export default function AdminHome() {
           flexGrow: 1,
         }}
       >
-        <View className="flex flex-col justify-center items-center gap-4">
+        <View className="flex flex-col justify-center items-center gap-4 max-h-full">
           <View className="flex flex-row justify-between items-start gap-4 w-full px-10">
             <Card
               id="users"

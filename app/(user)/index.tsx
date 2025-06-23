@@ -26,7 +26,7 @@ export default function UserHome() {
           flexGrow: 1,
         }}
       >
-        <View className="flex flex-col justify-center items-center gap-4">
+        <View className="flex flex-col justify-center items-center gap-4 h-full">
           <View className="flex flex-row justify-between items-start gap-4 w-full px-10">
             <Card
               title="Manage Videos"

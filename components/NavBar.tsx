@@ -37,7 +37,7 @@ export default function NavBar() {
           </Pressable>
         </View>
       ) : (
-        <View className="flex-row space-x-8 px-6 pt-8">
+        <View className="flex-row space-x-8 px-6 pt-8 gap-4">
           <Pressable
             onPress={() =>
               Linking.openURL(
