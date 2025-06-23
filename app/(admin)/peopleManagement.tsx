@@ -29,11 +29,11 @@ export default function PeopleManagement() {
     }
     await store(parse.data);
     console.log("Criar nova pessoa:", { label });
-    router.replace("/(admin)/peopleList");
+    router.push("/(admin)/peopleList");
   };
 
   const handleBack = () => {
-    router.replace("/(admin)");
+    router.back();
   };
 
   return (

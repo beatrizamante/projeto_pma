@@ -21,7 +21,7 @@ export default function userList() {
   });
 
   const createHandler = () => {
-    router.replace("/userManagement");
+    router.push("/userManagement");
   };
 
   return (

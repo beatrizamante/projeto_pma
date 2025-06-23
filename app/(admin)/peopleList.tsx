@@ -29,18 +29,18 @@ export default function peopleList() {
     clear();
     console.log("DELETE CONFIRMED!");
     setConfirmModalVisible(false);
-    router.replace("/peopleList");
+    router.push("/peopleList");
   };
 
   const createHandler = () => {
-    router.replace("/peopleManagement");
+    router.push("/peopleManagement");
   };
 
   const handleDelete = async () => {
     setConfirmModalVisible(true);
     console.log("Deletar usuário:", selectedId);
     clear();
-    router.replace("/(admin)/userList");
+    router.push("/(admin)/userList");
   };
 
   return (

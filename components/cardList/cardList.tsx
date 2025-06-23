@@ -3,6 +3,7 @@ import React from "react";
 import Card from "./item/item";
 import { useDoubleClickCard } from "../../app/hooks/useDoubleClickCard";
 
+
 type ListProps = {
   data: any[];
 };

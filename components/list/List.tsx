@@ -22,6 +22,7 @@ export default function List({ data, navigateTo }: ListProps) {
             onPress={handlePress}
           />
         )}
+        nestedScrollEnabled={true}
         className="flex gap-y-4 p-4 bg-semilight"
       />
     </View>

@@ -20,6 +20,7 @@ export default function ListDelete({ data, handleDelete }: ListProps) {
             onPress={handleDelete}
           />
         )}
+        nestedScrollEnabled={true}
         className="flex gap-y-4 p-4 bg-semilight"
       />
     </View>
