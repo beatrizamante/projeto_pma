@@ -34,7 +34,7 @@ export default function videoList() {
 
   const handleFind = () => {
     console.log("Find action");
-    router.replace("/(user)/peopleList");
+    router.push("/(user)/peopleList");
     store(selectedId!);
     setActionModalVisible(false);
   };
@@ -50,11 +50,11 @@ export default function videoList() {
     clear();
     console.log("DELETE CONFIRMED!");
     setConfirmModalVisible(false);
-    router.replace("/videoList");
+    router.push("/videoList");
   };
 
   const createHandler = () => {
-    router.replace("/videoManagement");
+    router.push("/videoManagement");
   };
 
   return (

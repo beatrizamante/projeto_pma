@@ -30,11 +30,11 @@ export default function VideoManagement() {
     }
     await store(parse.data);
     console.log("Criar nova pessoa:", { image_path });
-    router.replace("/(user)/videoList");
+    router.push("/(user)/videoList");
   };
 
   const handleBack = () => {
-    router.replace("/(user)");
+    router.back();
   };
 
   return (

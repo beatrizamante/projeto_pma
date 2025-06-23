@@ -9,9 +9,9 @@ export default function UserHome() {
 
   const handlerNav = (id: string) => {
     if (id === "people") {
-      router.replace("/peopleList");
+      router.push("/peopleList");
     } else if (id === "video") {
-      router.replace("/videoList");
+      router.push("/videoList");
     } else {
       console.log("Unknown:", id);
     }

@@ -9,7 +9,7 @@ export default function findPeople() {
   const router = useRouter();
 
   const handleBack = () => {
-    router.replace("/(user)");
+    router.back();
   };
 
   return (
