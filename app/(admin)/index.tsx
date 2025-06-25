@@ -19,16 +19,8 @@ export default function AdminHome() {
 
   return (
     <>
-      <ScrollView
-        contentContainerStyle={{
-          paddingHorizontal: 24,
-          paddingTop: 24,
-          paddingBottom: 120,
-          flexGrow: 1,
-        }}
-      >
-        <View className="flex flex-col justify-center items-center gap-4 max-h-full">
-          <View className="flex flex-row justify-between items-start gap-4 w-full px-10">
+        <View className="flex flex-1 flex-col justify-center items-center gap-4 min-h-full">
+          <View className="flex flex-1 flex-row justify-between items-start gap-4 w-full px-10 ">
             <Card
               id="users"
               title="Manage Users"
@@ -67,7 +59,6 @@ export default function AdminHome() {
             </TouchableOpacity>
           </View>
         </View>
-      </ScrollView>
       <Footer />
     </>
   );
