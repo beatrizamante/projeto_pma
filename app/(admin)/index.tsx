@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, ScrollView } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
 import { useRouter } from "expo-router";
 import Footer from "../../components/Footer";
@@ -40,13 +40,10 @@ export default function AdminHome() {
                 <Text className="text-lg text-darker font-semibold text-center">
                   How to create hashes_
                 </Text>
-                <Text className="text-lg text-darker font-semibold text-center">
-                  Click Here
-                </Text>
               </TouchableOpacity>
             </View>
           </View>
-          <View className="w-[200px] self-center mt-6 gap-2">
+          <View className="w-[200px] self-center mt-6 gap-2 mx-10">
             <Text className="pt-6 text-darker font-semibold text-lg text-center">
               Need to use a real time video stream? No fret, please, access the
               documentation below and see how to connect across websocket
