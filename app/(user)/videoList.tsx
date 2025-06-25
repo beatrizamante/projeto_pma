@@ -61,7 +61,7 @@ export default function videoList() {
       <Footer />
 
       <ActionModal
-        visible={confirmModalVisible}
+        visible={actionModalVisible}
         onClose={() => setActionModalVisible(false)}
         onFind={() => handleFind}
         onDelete={handleDelete}
