@@ -10,10 +10,9 @@ type ListProps = {
     date: string;
     image_path: string;
   }[];
-  navigateTo: string;
 };
 
-export default function CardList({ data, navigateTo }: ListProps) {
+export default function CardList({ data }: ListProps) {
   const { width } = useWindowDimensions();
   const handlePress = useDoubleClickCard();
   const numColumns = width > 800 ? 3 : 2;
