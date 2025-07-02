@@ -11,22 +11,20 @@ import { useSelectedItem } from "../../stores/useSelectedItem";
 
 export default function videoList() {
   const router = useRouter();
-  const { selectedId, clear, store } = useSelectedItem();
+  const { store, clear } = useSelectedItem();
 
   const [actionModalVisible, setActionModalVisible] = useState(false);
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
 
-  useEffect(() => {
-    if (selectedId) {
-      setActionModalVisible(true);
-    }
-  }, [selectedId]);
-
-  const handleFind = (id: string) => {
+  const handleFind = () => {
     console.log("Find action");
     router.push("/(user)/peopleList");
-    store(id);
     setActionModalVisible(false);
+  };
+
+  const handleDoubleClick = (id: string) => {
+    store(id);
+    setActionModalVisible(true);
   };
 
   const handleDelete = () => {
@@ -60,7 +58,7 @@ export default function videoList() {
             <Text className="text-darker text-center text-lg font-semibold">
               Select a video to manage:
             </Text>
-            <CardList data={data} />
+            <CardList data={data} onDoubleClick={handleDoubleClick} />
             <Button content="Create new video!" onPress={createHandler} />
           </View>
         </View>
@@ -70,7 +68,7 @@ export default function videoList() {
       <ActionModal
         visible={actionModalVisible}
         onClose={() => setActionModalVisible(false)}
-        onFind={() => handleFind}
+        onFind={handleFind}
         onDelete={handleDelete}
       />
 

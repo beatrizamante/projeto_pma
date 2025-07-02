@@ -10,11 +10,11 @@ type ListProps = {
     date: string;
     image_path: string;
   }[];
+  onDoubleClick: (id: string) => void;
 };
 
-export default function CardList({ data }: ListProps) {
+export default function CardList({ data, onDoubleClick }: ListProps) {
   const { width } = useWindowDimensions();
-  const handlePress = useDoubleClickCard();
   const numColumns = width > 800 ? 3 : 2;
 
   return (
@@ -26,7 +26,7 @@ export default function CardList({ data }: ListProps) {
         renderItem={({ item }) => (
           <Card
             id={item.id.toString()}
-            onPress={handlePress}
+            onPress={onDoubleClick}
             date={item.date}
             user={item.user}
             image_path={require("../../assets/manage_people.png")}
