@@ -1,5 +1,5 @@
 import { View, Text, ScrollView } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "expo-router";
 import Button from "../../components/Button";
 import Footer from "../../components/Footer";
@@ -15,6 +15,12 @@ export default function videoList() {
 
   const [actionModalVisible, setActionModalVisible] = useState(false);
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
+
+  useEffect(() => {
+    if (selectedId) {
+      setActionModalVisible(true);
+    }
+  }, [selectedId]);
 
   const handleFind = (id: string) => {
     console.log("Find action");
