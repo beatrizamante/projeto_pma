@@ -11,7 +11,7 @@ import { useSelectedItem } from "../../stores/useSelectedItem";
 
 export default function videoList() {
   const router = useRouter();
-  const { store } = useSelectedItem();
+  const { selectedId, clear, store } = useSelectedItem();
 
   const [actionModalVisible, setActionModalVisible] = useState(false);
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
@@ -38,6 +38,7 @@ export default function videoList() {
   const handleConfirmDelete = () => {
     console.log("DELETE CONFIRMED!");
     setConfirmModalVisible(false);
+    clear();
   };
 
   const createHandler = () => {
