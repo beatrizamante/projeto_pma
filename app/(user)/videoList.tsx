@@ -34,9 +34,12 @@ export default function videoList() {
 
   const handleFind = () => {
     console.log("Find action");
-    router.push("/(user)/peopleList");
-    store(selectedId!);
     setActionModalVisible(false);
+  };
+
+  const handleDoubleClick = (id: string) => {
+    store(id);
+    setActionModalVisible(true);
   };
 
   const handleDelete = () => {
@@ -50,7 +53,6 @@ export default function videoList() {
     clear();
     console.log("DELETE CONFIRMED!");
     setConfirmModalVisible(false);
-    router.push("/videoList");
   };
 
   const createHandler = () => {
@@ -72,7 +74,7 @@ export default function videoList() {
             <Text className="text-darker text-center text-lg font-semibold">
               Select a video to manage:
             </Text>
-            <CardList data={[]} />
+            <CardList data={[]} onDoubleClick={handleDoubleClick} />
             <Button content="Create new video!" onPress={createHandler} />
           </View>
         </View>

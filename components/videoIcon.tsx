@@ -10,7 +10,7 @@ export default function VideoIcon({ thumbnail }: videoIconProps) {
     <View>
       <Image
         source={thumbnail}
-        className="w-max-[335px] h-max-[340px] px-4 w-full h-full"
+        className="w-max-[335px] h-max-[340px] w-full h-full"
       ></Image>
     </View>
   );
