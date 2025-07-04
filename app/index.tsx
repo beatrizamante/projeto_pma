@@ -12,7 +12,6 @@ import { makeDatabase } from "../infrastructure/makeDatabase";
 export default function Home() {
   const router = useRouter();
   const logInfo = useAuth((state) => state.login);
-  const userInfo = useAuth((state) => state.user);
   const [login, onChangeLogin] = React.useState("");
   const [password, onChangePassword] = React.useState("");
   const [err, setErr] = React.useState("");
@@ -40,7 +39,6 @@ export default function Home() {
         name: user.name,
         role: user.role,
       });
-      console.log("User info after login:", userInfo);
     } else {
       Alert.alert("Invalid login, please, check your password");
     }

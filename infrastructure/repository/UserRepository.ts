@@ -33,7 +33,7 @@ export const erase = async (id: string) => {
 }
 
 export const findByName = async (name: string): Promise<User | null> => {
-    return await db.getFirstAsync(`SELECT id, name, role password FROM users WHERE name = ?`, [name]);
+    return await db.getFirstAsync(`SELECT id, name, role, password FROM users WHERE name = ?`, [name]);
 }
 
 export const get = async (id: string): Promise<User | null> => {

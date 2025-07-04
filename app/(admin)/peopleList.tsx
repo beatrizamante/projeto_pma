@@ -46,6 +46,7 @@ export default function peopleList() {
   return (
     <>
       <ScrollView
+        nestedScrollEnabled={true}
         contentContainerStyle={{
           paddingHorizontal: 24,
           paddingTop: 24,
