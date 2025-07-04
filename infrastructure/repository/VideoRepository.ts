@@ -1,4 +1,4 @@
-import z from "zod/v4";
+import { z } from "zod/v4";
 import { db } from "../database";
 import { Video, VideoWithoutId } from "../../app/interfaces/video";
 

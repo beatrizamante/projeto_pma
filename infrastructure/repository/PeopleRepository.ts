@@ -1,14 +1,14 @@
-import z from "zod/v4";
+import { z } from "zod/v4";
 import { db } from "../database";
 import { Person, PersonWithoutId } from "../../app/interfaces/person";
 
 export const initPeople = async () => {
     return await db.execAsync(
         `CREATE TABLE IF NOT EXISTS people (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            label TEXT NOT NULL,
-            user_id INTEGER NOT NULL
-        )`
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                label TEXT NOT NULL,
+                user_id INTEGER NOT NULL
+            )`
     );
 }
 

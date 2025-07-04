@@ -3,14 +3,14 @@ import React, { useEffect } from "react";
 import { useRouter } from "expo-router";
 import Footer from "../../components/Footer";
 import Card from "../../components/Card";
-import { initDatabase } from "../../infrastructure/database";
+import { makeDatabase } from "../../infrastructure/makeDatabase";
 
 export default function AdminHome() {
   const router = useRouter();
 
   useEffect(() => {
     const setup = async () => {
-      await initDatabase();
+      await makeDatabase();
     };
     setup();
   }, []);
