@@ -18,7 +18,7 @@ export default function userList() {
       setUsers(allUsers);
     };
     fetchUsers();
-  });
+  }, []);
 
   const createHandler = () => {
     router.push("/userManagement");

@@ -27,21 +27,24 @@ export default function SignUp() {
       return;
     }
 
-    if (password === confirmPass) {
-      try {
-        await store(parse.data);
-        console.log("User registered!");
-        router.replace("/");
-      } catch (error) {
-        console.error("Database Error:", error);
-        Alert.alert("Error", "Failed to register user.");
-      }
+    try {
+      await store(parse.data);
+      console.log("User registered!");
+      router.replace("/");
+    } catch (error) {
+      console.error("Database Error:", error);
+      Alert.alert("Error", "Failed to register user.");
     }
-    Alert.alert(
-      "Password error:",
-      "The password must be the same as the confirmation pass"
-    );
-    return;
+
+    // if (password === confirmPass) {
+    //   console.log("Passwords________", password, confirmPass);
+    // } else {
+    //   Alert.alert(
+    //     "Password error:",
+    //     "The password must be the same as the confirmation pass"
+    //   );
+    //   return;
+    // }
   };
 
   return (
@@ -61,7 +64,7 @@ export default function SignUp() {
               Enter information for sign up:
             </Text>
             <Input
-              label="name"
+              label="username"
               value={name}
               handler={setname}
               isPassword={false}

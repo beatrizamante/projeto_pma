@@ -1,24 +1,34 @@
 import { View, Text, TouchableOpacity, ScrollView, Alert } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import Footer from "../components/Footer";
 import Input from "../components/form/Input";
 import Button from "../components/Button";
 import { useRouter } from "expo-router";
 import { useAuth } from "../stores/useAuth";
-import { findByname } from "../infrastructure/repository/UserRepository";
+import { findByName } from "../infrastructure/repository/UserRepository";
 import { User } from "./interfaces/user";
+import { makeDatabase } from "../infrastructure/makeDatabase";
 
 export default function Home() {
   const router = useRouter();
   const logInfo = useAuth((state) => state.login);
+  const userInfo = useAuth((state) => state.user);
   const [login, onChangeLogin] = React.useState("");
   const [password, onChangePassword] = React.useState("");
   const [err, setErr] = React.useState("");
 
-  const handleLogin = async () => {
-    const user: User | null = await findByname(login);
+  useEffect(() => {
+    const setup = async () => {
+      await makeDatabase();
+      console.log("Tables created");
+    };
+    setup();
+  }, []);
 
-    if (!user) {
+  const handleLogin = async () => {
+    const user: User | null = await findByName(login);
+
+    if (!user || user === null) {
       Alert.alert("This user does not exist, please, create an account;");
       return;
     }
@@ -30,6 +40,7 @@ export default function Home() {
         name: user.name,
         role: user.role,
       });
+      console.log("User info after login:", userInfo);
     } else {
       Alert.alert("Invalid login, please, check your password");
     }
@@ -61,7 +72,7 @@ export default function Home() {
       >
         <View className="flex flex-col justify-center items-center gap-4">
           <Input
-            label="login"
+            label="username"
             value={login}
             handler={onChangeLogin}
             isPassword={false}

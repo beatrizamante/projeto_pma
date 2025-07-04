@@ -22,7 +22,7 @@ export default function peopleList() {
       setPeople(allPeople);
     };
     fetchPeople();
-  });
+  }, []);
 
   const handleConfirmDelete = async () => {
     await erase(selectedId!);

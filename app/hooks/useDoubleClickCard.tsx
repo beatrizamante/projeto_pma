@@ -1,6 +1,8 @@
 import { useRef } from "react";
 
-export function useDoubleClickCard(onDoubleClick: (id: string) => void) {
+export default function useDoubleClickCard(
+  onDoubleClick: (id: string) => void
+) {
   const clickCount = useRef(0);
   const clickTimer = useRef<NodeJS.Timeout | null>(null);
 

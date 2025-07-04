@@ -1,19 +1,11 @@
 import { View, Text, TouchableOpacity } from "react-native";
-import React, { useEffect } from "react";
+import React from "react";
 import { useRouter } from "expo-router";
 import Footer from "../../components/Footer";
 import Card from "../../components/Card";
-import { makeDatabase } from "../../infrastructure/makeDatabase";
 
 export default function AdminHome() {
   const router = useRouter();
-
-  useEffect(() => {
-    const setup = async () => {
-      await makeDatabase();
-    };
-    setup();
-  }, []);
 
   const handlerNav = (id: string) => {
     if (id === "users") {

@@ -15,7 +15,7 @@ export default function peopleList() {
       setPeople(allPeople);
     };
     fetchPeople();
-  });
+  }, []);
 
   return (
     <>
