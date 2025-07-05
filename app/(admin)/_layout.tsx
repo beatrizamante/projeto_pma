@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ActionSheetProvider } from "@expo/react-native-action-sheet";
-import { Redirect, Stack } from "expo-router";
+import { Redirect, Stack, useRouter } from "expo-router";
 import { useAuth } from "../../stores/useAuth";
 
 export default function AdminLayout() {
   const { isAuthenticated, user } = useAuth();
+  const router = useRouter();
 
-  if (!isAuthenticated || user?.role !== "admin") {
-    return <Redirect href="/" />;
-  }
+  useEffect(() => {
+    if (!isAuthenticated || user?.role !== "admin") {
+      router.replace("/");
+    }
+  }, [isAuthenticated]);
 
   return (
     <ActionSheetProvider>
