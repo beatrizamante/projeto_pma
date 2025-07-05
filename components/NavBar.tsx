@@ -33,7 +33,7 @@ export default function NavBar() {
             }}
             className="px-6"
           >
-            <Ionicons name="power" size={32} color="black"></Ionicons>
+            <Ionicons name="power" size={32} color="grey"></Ionicons>
           </Pressable>
         </View>
       ) : (
