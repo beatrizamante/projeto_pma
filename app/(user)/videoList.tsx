@@ -9,6 +9,7 @@ import ConfirmationModal from "../../components/ConfirmationModal";
 import { useSelectedItem } from "../../stores/useSelectedItem";
 import { Video } from "../interfaces/video";
 import { erase, list } from "../../infrastructure/repository/VideoRepository";
+import data from "../../mocks/videos";
 
 export default function videoList() {
   const router = useRouter();
@@ -75,7 +76,7 @@ export default function videoList() {
             <Text className="text-darker text-center text-lg font-semibold">
               Select a video to manage:
             </Text>
-            <CardList data={videos} onDoubleClick={handleDoubleClick} />
+            <CardList data={data} onDoubleClick={handleDoubleClick} />
             <Button content="Create new video!" onPress={createHandler} />
           </View>
         </View>
