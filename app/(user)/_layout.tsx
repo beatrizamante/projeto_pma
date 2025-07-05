@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
+import { View, Text } from "react-native";
 import { ActionSheetProvider } from "@expo/react-native-action-sheet";
 import { Stack, useRouter } from "expo-router";
 import { useAuth } from "../../stores/useAuth";
 
 export default function UserLayout() {
-  const { isAuthenticated } = useAuth();
+  const isAuthenticated = useAuth((state) => state.isAuthenticated);
   const router = useRouter();
 
   useEffect(() => {
@@ -12,6 +13,13 @@ export default function UserLayout() {
       router.replace("/");
     }
   }, [isAuthenticated]);
+
+  if (!isAuthenticated)
+    return (
+      <View>
+        <Text>Loading...</Text>
+      </View>
+    );
 
   return (
     <ActionSheetProvider>

@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { useRouter } from "expo-router";
 import { useSelectedItem } from "../../stores/useSelectedItem";
 
-export function useDoubleClickNavigation(path: string) {
+export default function useDoubleClickNavigation(path: string) {
   const router = useRouter();
   const { store } = useSelectedItem();
   const clickCount = useRef(0);

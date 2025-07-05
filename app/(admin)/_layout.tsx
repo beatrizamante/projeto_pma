@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { ActionSheetProvider } from "@expo/react-native-action-sheet";
-import { Redirect, Stack, useRouter } from "expo-router";
+import { Stack, useRouter } from "expo-router";
 import { useAuth } from "../../stores/useAuth";
 
 export default function AdminLayout() {
-  const { isAuthenticated, user } = useAuth();
+  const { user } = useAuth();
+  const isAuthenticated = useAuth((state) => state.isAuthenticated);
   const router = useRouter();
 
   useEffect(() => {
@@ -12,6 +13,8 @@ export default function AdminLayout() {
       router.replace("/");
     }
   }, [isAuthenticated]);
+
+  if (!isAuthenticated) return null;
 
   return (
     <ActionSheetProvider>

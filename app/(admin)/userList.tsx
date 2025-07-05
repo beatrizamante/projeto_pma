@@ -16,6 +16,7 @@ export default function userList() {
   return (
     <>
       <ScrollView
+        nestedScrollEnabled={true}
         contentContainerStyle={{
           paddingHorizontal: 24,
           paddingTop: 24,
