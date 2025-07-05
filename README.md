@@ -104,3 +104,15 @@ npm test
 - [ ] Test front end components :: 4 points
 - [ ] Connect with backend Api :: 2 points
 - [ ] Create targeting screen draw to user found person on the video with label :: 3 points
+
+#Updates Since Last Checkpoint
+##Resources applied from PDM modules:
+
+- Used nativewind to stylize the screens and components;
+- Used zustand stores for context saving of Authentication and Selections through screens;
+- Implemented expo-router to nativate between different screens based on type of user role;
+
+##Good practice on reusable components used
+- Created reusable components for: Buttons, Cards, Inputs, Lists, Modals, Footers, and Navbar;
+- Applied the same components between screens, keeping the  design UX standard;
+- Implemented component composition for navbar and lists, making a tree of children and custom props;
