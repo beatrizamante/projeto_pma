@@ -1,12 +1,12 @@
 import { View, Text, Image, Pressable } from "react-native";
 import * as Linking from "expo-linking";
-import { Feather } from "@expo/vector-icons";
 import { useAuth } from "../stores/useAuth";
 import { useRouter } from "expo-router";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import React from "react";
 
 export default function NavBar() {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, logout } = useAuth();
   const router = useRouter();
 
   return (
@@ -21,19 +21,19 @@ export default function NavBar() {
       }}
     >
       <View className="py-6 px-6">
-        <Image
-          source={require("../assets/icon.png")}
-          className="w-10 h-10"
-        />
+        <Image source={require("../assets/icon.png")} className="w-10 h-10" />
       </View>
 
       {isAuthenticated ? (
         <View>
           <Pressable
-            onPress={() => router.push("/(user)/create")}
+            onPress={() => {
+              logout();
+              router.replace("/");
+            }}
             className="px-6"
           >
-            <Feather name="menu" size={28} color="#9B9293" />
+            <Ionicons name="power" size={32} color="grey"></Ionicons>
           </Pressable>
         </View>
       ) : (

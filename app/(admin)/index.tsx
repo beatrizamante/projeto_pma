@@ -20,7 +20,7 @@ export default function AdminHome() {
   return (
     <>
       <View className="flex flex-1 flex-col justify-center items-center gap-4 min-h-full">
-        <View className="flex flex-1 flex-row justify-between items-start gap-4 w-full px-10 ">
+        <View className="flex flex-1 flex-row justify-around items-center gap-4 w-full">
           <Card
             id="users"
             title="Manage Users"
@@ -28,28 +28,29 @@ export default function AdminHome() {
             uri={require("../../assets/manage_users.png")}
             onPress={handlerNav}
           ></Card>
-          <View className="flex justify-center items-center gap-2">
-            <Card
-              id="people"
-              title="Manage People"
-              content="Create or manage a body hash"
-              uri={require("../../assets/manage_people.png")}
-              onPress={handlerNav}
-            ></Card>
-            <TouchableOpacity className="flex w-[140px]">
-              <Text className="text-lg text-darker font-semibold text-center">
-                How to create hashes_
-              </Text>
-            </TouchableOpacity>
-          </View>
+          <Card
+            id="people"
+            title="Manage People"
+            content="Create or manage a body hash"
+            uri={require("../../assets/manage_people.png")}
+            onPress={handlerNav}
+          ></Card>
         </View>
-        <View className="w-[200px] self-center mt-6 gap-2 mx-10">
+        <TouchableOpacity
+          className="w-[140px]"
+          onPress={() => console.log("How to create hashes pressed")}
+        >
+          <Text className="text-lg text-darker font-semibold text-center">
+            How to create hashes_
+          </Text>
+        </TouchableOpacity>
+        <View className="self-center mt-6 px-6 max-w-[320px]">
           <Text className="pt-6 text-darker font-semibold text-lg text-center">
             Need to use a real time video stream? No fret, please, access the
             documentation below and see how to connect across websocket
             connections
           </Text>
-          <TouchableOpacity onPress={() => {}}>
+          <TouchableOpacity className="pb-16" onPress={() => {}}>
             <Text className="text-xl text-semidark font-semibold text-center">
               Getting Started
             </Text>

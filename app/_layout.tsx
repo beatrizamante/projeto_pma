@@ -1,12 +1,12 @@
 import React from "react";
 import "../global.css";
-import { ActionSheetProvider } from "@expo/react-native-action-sheet";
 import { Stack } from "expo-router";
 import NavBar from "../components/NavBar";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 export default function Layout() {
   return (
-    <ActionSheetProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
       <Stack
         screenOptions={{
           header: () => <NavBar />,
@@ -15,6 +15,6 @@ export default function Layout() {
         <Stack.Screen name="index" options={{ title: "Home" }} />
         <Stack.Screen name="signup" options={{ title: "Register" }} />
       </Stack>
-    </ActionSheetProvider>
+    </GestureHandlerRootView>
   );
 }

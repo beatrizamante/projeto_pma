@@ -35,8 +35,8 @@ export default function UserHome() {
             onPress={handlerNav}
           />
         </View>
-        <View className="self-center mt-6 px-10">
-          <Text className="pt-6 text-darker font-semibold text-lg">
+        <View className="self-center mt-6 px-6 max-w-[320px]">
+          <Text className="text-darker font-semibold text-lg">
             If you can’t find a specific person’s hash, please, contact your
             administrative user. They’ll be the one to create one for you.{" "}
           </Text>
