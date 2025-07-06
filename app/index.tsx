@@ -5,7 +5,6 @@ import Input from "../components/form/Input";
 import Button from "../components/Button";
 import { useRouter } from "expo-router";
 import { useAuth } from "../stores/useAuth";
-import { role } from "../interfaces/user";
 
 export default function Home() {
   const router = useRouter();

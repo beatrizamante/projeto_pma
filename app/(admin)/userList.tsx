@@ -10,12 +10,13 @@ export default function userList() {
   const router = useRouter();
 
   const createHandler = () => {
-    router.replace("/userManagement");
+    router.push("/userManagement");
   };
 
   return (
     <>
       <ScrollView
+        nestedScrollEnabled={true}
         contentContainerStyle={{
           paddingHorizontal: 24,
           paddingTop: 24,

@@ -10,12 +10,13 @@ export default function peopleList() {
   const router = useRouter();
 
   const createHandler = () => {
-    router.replace("/peopleManagement");
+    router.push("/peopleManagement");
   };
 
   return (
     <>
       <ScrollView
+        nestedScrollEnabled={true}
         contentContainerStyle={{
           paddingHorizontal: 24,
           paddingTop: 24,

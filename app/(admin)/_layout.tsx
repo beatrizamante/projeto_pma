@@ -1,27 +1,27 @@
-import React from "react";
-import { ActionSheetProvider } from "@expo/react-native-action-sheet";
-import { Redirect, Stack } from "expo-router";
+import React, { useEffect } from "react";
+import { Stack, useRouter } from "expo-router";
 import { useAuth } from "../../stores/useAuth";
 
 export default function AdminLayout() {
-  const { isAuthenticated, user } = useAuth();
+  const { user } = useAuth();
+  const isAuthenticated = useAuth((state) => state.isAuthenticated);
+  const router = useRouter();
 
-  if (!isAuthenticated || user?.role !== "admin") {
-    return <Redirect href="/" />;
-  }
+  useEffect(() => {
+    if (!isAuthenticated || user?.role !== "admin") {
+      router.replace("/");
+    }
+  }, [isAuthenticated]);
+
+  if (!isAuthenticated) return null;
 
   return (
-    <ActionSheetProvider>
-      <Stack>
-        <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen name="userList" options={{ headerShown: false }} />
-        <Stack.Screen name="userManagement" options={{ headerShown: false }} />
-        <Stack.Screen name="peopleList" options={{ headerShown: false }} />
-        <Stack.Screen
-          name="peopleManagement"
-          options={{ headerShown: false }}
-        />
-      </Stack>
-    </ActionSheetProvider>
+    <Stack>
+      <Stack.Screen name="index" options={{ headerShown: false }} />
+      <Stack.Screen name="userList" options={{ headerShown: false }} />
+      <Stack.Screen name="userManagement" options={{ headerShown: false }} />
+      <Stack.Screen name="peopleList" options={{ headerShown: false }} />
+      <Stack.Screen name="peopleManagement" options={{ headerShown: false }} />
+    </Stack>
   );
 }

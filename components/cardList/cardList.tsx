@@ -1,9 +1,6 @@
 import { FlatList, useWindowDimensions, View } from "react-native";
-import React, { useRef, useState } from "react";
+import React from "react";
 import Card from "./item/item";
-import { useDoubleClickNavigation } from "../../app/hooks/useDoubleClickNavigation";
-import { useSelectedItem } from "../../stores/useSelectedItem";
-import { useRouter } from "expo-router";
 
 type ListProps = {
   data: {
@@ -12,12 +9,11 @@ type ListProps = {
     date: string;
     image_path: string;
   }[];
-  navigateTo: string;
+  onDoubleClick: (id: string) => void;
 };
 
-export default function CardList({ data, navigateTo }: ListProps) {
+export default function CardList({ data, onDoubleClick }: ListProps) {
   const { width } = useWindowDimensions();
-  const handlePress = useDoubleClickNavigation(navigateTo);
   const numColumns = width > 800 ? 3 : 2;
 
   return (
@@ -29,12 +25,13 @@ export default function CardList({ data, navigateTo }: ListProps) {
         renderItem={({ item }) => (
           <Card
             id={item.id.toString()}
-            onPress={handlePress}
+            onPress={onDoubleClick}
             date={item.date}
             user={item.user}
             image_path={require("../../assets/manage_people.png")}
           />
         )}
+        nestedScrollEnabled={true}
         className="flex flex-wrap gap-y-4 p-4 bg-semilight"
         numColumns={numColumns}
         columnWrapperStyle={{

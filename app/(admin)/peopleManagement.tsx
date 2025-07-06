@@ -5,13 +5,6 @@ import Button from "../../components/Button";
 import Footer from "../../components/Footer";
 import Input from "../../components/form/Input";
 
-type User = {
-  id: string;
-  username: string;
-  email: string;
-  role: string;
-};
-
 export default function PeopleManagement() {
   const router = useRouter();
 
@@ -19,11 +12,11 @@ export default function PeopleManagement() {
 
   const handleCreate = () => {
     console.log("Criar nova pessoa:", { label });
-    router.replace("/(admin)/peopleList");
+    router.push("/(admin)/peopleList");
   };
 
   const handleBack = () => {
-    router.replace("/(admin)");
+    router.back();
   };
 
   return (

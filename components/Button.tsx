@@ -8,7 +8,7 @@ type ButtonProps = {
 
 export default function Button({ onPress, content }: ButtonProps) {
   return (
-    <View>
+    <View className="h-[60px]">
       <TouchableOpacity 
       onPress={onPress} 
       className="bg-semidark px-[30px] py-3 min-w-[160px] w-full min-h-[36px] h-full flex justify-center items-center rounded-[25px] border-semilight border shadow-black shadow-lg">

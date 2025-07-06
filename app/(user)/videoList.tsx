@@ -1,5 +1,5 @@
 import { View, Text, ScrollView } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "expo-router";
 import Button from "../../components/Button";
 import Footer from "../../components/Footer";
@@ -11,16 +11,20 @@ import { useSelectedItem } from "../../stores/useSelectedItem";
 
 export default function videoList() {
   const router = useRouter();
-  const { store } = useSelectedItem();
+  const { store, clear } = useSelectedItem();
 
   const [actionModalVisible, setActionModalVisible] = useState(false);
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
 
-  const handleFind = (id: string) => {
+  const handleFind = () => {
     console.log("Find action");
-    router.replace("/(user)/peopleList");
-    store(id);
+    router.push("/(user)/peopleList");
     setActionModalVisible(false);
+  };
+
+  const handleDoubleClick = (id: string) => {
+    store(id);
+    setActionModalVisible(true);
   };
 
   const handleDelete = () => {
@@ -32,6 +36,7 @@ export default function videoList() {
   const handleConfirmDelete = () => {
     console.log("DELETE CONFIRMED!");
     setConfirmModalVisible(false);
+    clear();
   };
 
   const createHandler = () => {
@@ -41,6 +46,7 @@ export default function videoList() {
   return (
     <>
       <ScrollView
+        nestedScrollEnabled={true}
         contentContainerStyle={{
           paddingHorizontal: 24,
           paddingTop: 24,
@@ -53,7 +59,7 @@ export default function videoList() {
             <Text className="text-darker text-center text-lg font-semibold">
               Select a video to manage:
             </Text>
-            <CardList data={data} navigateTo="/(user)/videoManagement" />
+            <CardList data={data} onDoubleClick={handleDoubleClick} />
             <Button content="Create new video!" onPress={createHandler} />
           </View>
         </View>
@@ -61,9 +67,9 @@ export default function videoList() {
       <Footer />
 
       <ActionModal
-        visible={confirmModalVisible}
+        visible={actionModalVisible}
         onClose={() => setActionModalVisible(false)}
-        onFind={() => handleFind}
+        onFind={handleFind}
         onDelete={handleDelete}
       />
 

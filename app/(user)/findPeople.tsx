@@ -3,13 +3,13 @@ import React from "react";
 import { useRouter } from "expo-router";
 import Footer from "../../components/Footer";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import VideoIcon from "../../components/VideoIcon";
+import VideoIcon from "../../components/videoIcon";
 
 export default function findPeople() {
   const router = useRouter();
 
   const handleBack = () => {
-    router.replace("/(user)");
+    router.back();
   };
 
   return (

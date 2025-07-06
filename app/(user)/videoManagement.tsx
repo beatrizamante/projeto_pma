@@ -3,18 +3,18 @@ import React from "react";
 import { useRouter } from "expo-router";
 import Button from "../../components/Button";
 import Footer from "../../components/Footer";
-import VideoIcon from "../../components/VideoIcon";
+import VideoIcon from "../../components/videoIcon";
 
 export default function VideoManagement() {
   const router = useRouter();
 
   const handleCreate = () => {
     console.log("Criar novo vídeo.");
-    router.replace("/(user)/videoList");
+    router.push("/(user)/videoList");
   };
 
   const handleBack = () => {
-    router.replace("/(user)");
+    router.back();
   };
 
   return (

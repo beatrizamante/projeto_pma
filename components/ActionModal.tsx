@@ -1,6 +1,6 @@
-import { View, Text, Modal, TouchableWithoutFeedback } from "react-native";
+import { View, Text } from "react-native";
 import React from "react";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { TouchableOpacity } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import ModalBase from "./ModalBase";
 

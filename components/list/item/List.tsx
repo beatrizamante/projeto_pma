@@ -1,7 +1,7 @@
 import { FlatList, View } from "react-native";
 import React from "react";
 import Item from "./Item";
-import { useDoubleClickNavigation } from "../../../app/hooks/useDoubleClickNavigation";
+import useDoubleClickNavigation from "../../../app/hooks/useDoubleClickNavigation";
 
 type ListProps = {
   data: { id: number; name: string }[];
@@ -22,6 +22,7 @@ export default function List({ data, navigateTo }: ListProps) {
             onPress={handlePress}
           />
         )}
+        nestedScrollEnabled={true}
         className="flex gap-y-4 p-4 bg-semilight"
       />
     </View>
