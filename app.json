@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "watch me",
-    "slug": "watch me",
+    "slug": "watchme",
     "scheme": "watchme-scheme",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -20,7 +20,9 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "versionCode": 1,
+      "package": "com.beatrizamante.watchme"
     },
     "web": {
       "favicon": "./assets/icon.png",
@@ -45,6 +47,14 @@
           }
         }
       ]
-    ]
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "b5728aeb-6e2c-48a5-bcb3-bf4ec6a2ac36"
+      }
+    }
   }
 }

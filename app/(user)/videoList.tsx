@@ -3,22 +3,38 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "expo-router";
 import Button from "../../components/Button";
 import Footer from "../../components/Footer";
-import data from "../../mocks/videos";
 import CardList from "../../components/cardList/cardList";
 import ActionModal from "../../components/ActionModal";
 import ConfirmationModal from "../../components/ConfirmationModal";
 import { useSelectedItem } from "../../stores/useSelectedItem";
+import { Video } from "../interfaces/video";
+import { erase, list } from "../../infrastructure/repository/VideoRepository";
+import data from "../../mocks/videos";
 
 export default function videoList() {
   const router = useRouter();
-  const { store, clear } = useSelectedItem();
-
+  const [videos, setVideos] = useState<Video[]>([]);
+  const { selectedId, clear, store } = useSelectedItem();
   const [actionModalVisible, setActionModalVisible] = useState(false);
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
 
+  useEffect(() => {
+    const fetchVideo = async () => {
+      const allVideos = await list();
+      if (!allVideos) return;
+      setVideos(allVideos);
+    };
+    fetchVideo();
+  }, []);
+
+  useEffect(() => {
+    if (selectedId) {
+      setActionModalVisible(true);
+    }
+  }, [selectedId]);
+
   const handleFind = () => {
     console.log("Find action");
-    router.push("/(user)/peopleList");
     setActionModalVisible(false);
   };
 
@@ -33,14 +49,15 @@ export default function videoList() {
     setConfirmModalVisible(true);
   };
 
-  const handleConfirmDelete = () => {
+  const handleConfirmDelete = async () => {
+    await erase(selectedId!);
+    clear();
     console.log("DELETE CONFIRMED!");
     setConfirmModalVisible(false);
-    clear();
   };
 
   const createHandler = () => {
-    router.replace("/videoManagement");
+    router.push("/videoManagement");
   };
 
   return (

@@ -1,19 +1,50 @@
-import { View, Text, ScrollView } from "react-native";
+import { View, Text, ScrollView, Alert } from "react-native";
 import React, { useState } from "react";
 import Footer from "../components/Footer";
 import Input from "../components/form/Input";
 import Button from "../components/Button";
 import { useRouter } from "expo-router";
+import { store, UserSchema } from "../infrastructure/repository/UserRepository";
 
 export default function SignUp() {
-  const [username, setUsername] = useState("");
+  const [name, setname] = useState("");
   const [email, setEmail] = useState("");
   const [confirmPass, setConfirmPass] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
 
-  const handleCreateAccount = () => {
-    router.replace("/");
+  const handleCreateAccount = async () => {
+    const parse = UserSchema.safeParse({
+      name,
+      email,
+      password,
+      role: "user",
+    });
+
+    if (!parse.success) {
+      console.log(parse.error.format());
+      Alert.alert("Validation Error", "Please check your inputs");
+      return;
+    }
+
+    try {
+      await store(parse.data);
+      console.log("User registered!");
+      router.replace("/");
+    } catch (error) {
+      console.error("Database Error:", error);
+      Alert.alert("Error", "Failed to register user.");
+    }
+
+    // if (password === confirmPass) {
+    //   console.log("Passwords________", password, confirmPass);
+    // } else {
+    //   Alert.alert(
+    //     "Password error:",
+    //     "The password must be the same as the confirmation pass"
+    //   );
+    //   return;
+    // }
   };
 
   return (
@@ -34,8 +65,8 @@ export default function SignUp() {
             </Text>
             <Input
               label="username"
-              value={username}
-              handler={setUsername}
+              value={name}
+              handler={setname}
               isPassword={false}
             />
             <Input

@@ -1,59 +1,89 @@
-import { View, Text, ScrollView, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  ScrollView,
+  Image,
+  TouchableOpacity,
+  Alert,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "expo-router";
 import Button from "../../components/Button";
 import Footer from "../../components/Footer";
 import Input from "../../components/form/Input";
 import { useSelectedItem } from "../../stores/useSelectedItem";
-import Icon from "../../components/list/item/Icon";
-
-type User = {
-  id: string;
-  username: string;
-  email: string;
-  role: string;
-};
+import {
+  erase,
+  get,
+  patch,
+  store,
+  UserSchema,
+} from "../../infrastructure/repository/UserRepository";
+import DropDown from "../../components/form/Dropdown";
+import ConfirmationModal from "../../components/ConfirmationModal";
 
 export default function UserManagement() {
   const router = useRouter();
   const { selectedId, clear } = useSelectedItem();
-
-  const [users, setUsers] = useState<User[]>([]);
-  const [username, setUsername] = useState("");
+  const [name, setname] = useState("");
   const [email, setEmail] = useState("");
-  const [role, setRole] = useState("");
+  const [role, setRole] = useState<"user" | "admin">("user");
   const [password, setPassword] = useState("");
+  const [confirmModalVisible, setConfirmModalVisible] = useState(false);
 
   useEffect(() => {
-    setUsers([
-      { id: "1", username: "Bea", email: "bea@gmail.com", role: "user" },
-      { id: "2", username: "Maria", email: "maria@gmail.com", role: "admin" },
-    ]);
-
-    if (selectedId) {
-      const user = users.find((u) => u.id === selectedId);
-      if (user) {
-        setUsername(user.username);
-        setEmail(user.email);
-        setRole(user.role);
+    const fetchUser = async () => {
+      if (selectedId) {
+        const user = await get(selectedId);
+        if (user) {
+          setname(user.name);
+          setEmail(user.email);
+          setRole(user.role as "user" | "admin");
+          return;
+        }
       }
-    }
+      setname("");
+      setEmail("");
+      setPassword("");
+      setRole("user");
+    };
+
+    fetchUser();
   }, [selectedId]);
 
-  const handleUpdate = () => {
-    console.log("Atualizar usuário:", { username, email, role, password });
+  const handleConfirmDelete = async () => {
+    await erase(selectedId!);
+    clear();
+    console.log("DELETE CONFIRMED!");
+    setConfirmModalVisible(false);
+    router.replace("/userList");
+  };
+
+  const handleUpdate = async () => {
+    await patch(selectedId!, { name, email, password, role });
     clear();
     router.replace("/(admin)/userList");
   };
 
-  const handleDelete = () => {
+  const handleDelete = async () => {
+    setConfirmModalVisible(true);
     console.log("Deletar usuário:", selectedId);
-    clear();
-    router.replace("/(admin)/userList");
   };
 
-  const handleCreate = () => {
-    console.log("Criar novo usuário:", { username, email, role, password });
+  const handleCreate = async () => {
+    const parse = UserSchema.safeParse({
+      name,
+      email,
+      role: role.toLowerCase(),
+      password,
+    });
+
+    if (!parse.success) {
+      Alert.alert("The values were not validated.");
+      return;
+    }
+    await store(parse.data);
+    clear();
     router.replace("/(admin)/userList");
   };
 
@@ -83,14 +113,14 @@ export default function UserManagement() {
               </Text>
             </TouchableOpacity>
             <Text className="text-darker text-center font-semibold">
-              {isEditing ? `Editing ${username}` : ""}
+              {isEditing ? `Editing ${name}` : ""}
             </Text>
           </View>
 
           <Input
-            label="username"
-            value={username}
-            handler={setUsername}
+            label="name"
+            value={name}
+            handler={setname}
             isPassword={false}
           />
           <Input
@@ -105,17 +135,14 @@ export default function UserManagement() {
             handler={setPassword}
             isPassword={true}
           />
-          <Input
-            label="role"
-            value={role}
-            handler={setRole}
-            isPassword={false}
-          />
+          <DropDown label="role" value={role} handler={setRole} />
 
           {isEditing ? (
             <View className="flex flex-row justify-between items-center gap-4 mt-4">
               <Button content="Update user" onPress={handleUpdate} />
-              <Icon onPress={handleDelete} />
+              <TouchableOpacity className="w-7 h-7" onPress={handleDelete}>
+                <Image source={require("../../assets/Vector.png")} />
+              </TouchableOpacity>
             </View>
           ) : (
             <View className="mt-4">
@@ -125,6 +152,13 @@ export default function UserManagement() {
         </View>
       </ScrollView>
       <Footer />
+
+      <ConfirmationModal
+        content="user"
+        visible={confirmModalVisible}
+        onConfirm={handleConfirmDelete}
+        onCancel={() => setConfirmModalVisible(false)}
+      />
     </>
   );
 }
