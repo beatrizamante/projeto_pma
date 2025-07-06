@@ -6,8 +6,8 @@ import Button from "../components/Button";
 import { useRouter } from "expo-router";
 import { useAuth } from "../stores/useAuth";
 import { findByName } from "../infrastructure/repository/UserRepository";
-import { User } from "./interfaces/user";
 import { makeDatabase } from "../infrastructure/makeDatabase";
+import User from "./interfaces/user";
 
 export default function Home() {
   const router = useRouter();

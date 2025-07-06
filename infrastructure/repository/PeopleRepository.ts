@@ -1,19 +1,19 @@
 import { z } from "zod/v4";
 import { db } from "../database";
-import { Person, PersonWithoutId } from "../../app/interfaces/person";
+import Person, { PersonWithoutId } from "../../app/interfaces/person";
 
 export const initPeople = async () => {
     return await db.execAsync(
         `CREATE TABLE IF NOT EXISTS people (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
-                label TEXT NOT NULL,
+                name TEXT NOT NULL,
                 user_id INTEGER NOT NULL
             )`
     );
 }
 
 export const store = async (person: PersonWithoutId) => {
-    return await db.runAsync(`INSERT INTO users (label, user_id) VALUES (?, ?)`,
+    return await db.runAsync(`INSERT INTO people (name, user_id) VALUES (?, ?)`,
         [person.name, person.user_id]
     )
 }
@@ -23,7 +23,7 @@ export const erase = async (id: string) => {
     if (!person) return "This person doesn't exist on the database";
 
 
-    return await db.runAsync(`DELETE FROM users WHERE id = ? AND user_id = ?`,
+    return await db.runAsync(`DELETE FROM people WHERE id = ? AND user_id = ?`,
         [id, person.user_id]
     )
 }
@@ -33,7 +33,7 @@ export const get = async (id: string): Promise<Person | null> => {
 }
 
 export const list = async (): Promise<Person[]> => {
-    return await db.getAllAsync(`SELECT people.id, people.label FROM people JOIN users ON people.user_id = users.id`);
+    return await db.getAllAsync(`SELECT people.id, people.name FROM people JOIN users ON people.user_id = users.id`);
 }
 
 export const PeopleSchema = z.object({

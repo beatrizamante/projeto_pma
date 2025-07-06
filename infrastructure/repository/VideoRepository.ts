@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 import { db } from "../database";
-import { Video, VideoWithoutId } from "../../app/interfaces/video";
+import Video, { VideoWithoutId } from "../../app/interfaces/video";
 
 export const initVideos = async () => {
     return await db.execAsync(

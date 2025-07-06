@@ -1,4 +1,4 @@
-export interface Video {
+export default interface Video {
     id: string;
     user_id: string;
     image_path: string;

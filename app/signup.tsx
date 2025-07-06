@@ -18,7 +18,7 @@ export default function SignUp() {
       name,
       email,
       password,
-      role: "admin",
+      role: "user",
     });
 
     if (!parse.success) {

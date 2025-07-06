@@ -1,7 +1,7 @@
 import { FlatList, View } from "react-native";
 import React from "react";
 import Item from "./item/Item";
-import { useDoubleClickNavigation } from "../../app/hooks/useDoubleClickNavigation";
+import useDoubleClickNavigation from "../../app/hooks/useDoubleClickNavigation";
 
 type ListProps = {
   data: any[];

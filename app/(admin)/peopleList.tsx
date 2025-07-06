@@ -6,41 +6,40 @@ import { useRouter } from "expo-router";
 import ListDelete from "../../components/list/DeleteList";
 import { erase, list } from "../../infrastructure/repository/PeopleRepository";
 import { useSelectedItem } from "../../stores/useSelectedItem";
-import { Person } from "../interfaces/person";
 import ConfirmationModal from "../../components/ConfirmationModal";
+import Person from "../interfaces/person";
 
 export default function peopleList() {
   const router = useRouter();
-  const { selectedId, clear } = useSelectedItem();
   const [people, setPeople] = useState<Person[]>([]);
+  const [idToDelete, setIdToDelete] = useState<string | null>(null);
   const [confirmModalVisible, setConfirmModalVisible] = useState(false);
 
+  const fetchPeople = async () => {
+    const allPeople = await list();
+    if (!allPeople) return;
+    setPeople(allPeople);
+  };
+
   useEffect(() => {
-    const fetchPeople = async () => {
-      const allPeople = await list();
-      if (!allPeople) return;
-      setPeople(allPeople);
-    };
     fetchPeople();
   }, []);
 
   const handleConfirmDelete = async () => {
-    await erase(selectedId!);
-    clear();
+    if (!idToDelete) return;
+    await erase(idToDelete);
     console.log("DELETE CONFIRMED!");
+    await fetchPeople();
     setConfirmModalVisible(false);
-    router.push("/peopleList");
   };
 
   const createHandler = () => {
     router.push("/peopleManagement");
   };
 
-  const handleDelete = async () => {
+  const handleDelete = (id: string) => {
+    setIdToDelete(id);
     setConfirmModalVisible(true);
-    console.log("Deletar usuário:", selectedId);
-    clear();
-    router.push("/(admin)/userList");
   };
 
   return (

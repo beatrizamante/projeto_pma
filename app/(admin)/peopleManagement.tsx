@@ -13,22 +13,24 @@ import { useAuth } from "../../stores/useAuth";
 export default function PeopleManagement() {
   const router = useRouter();
   const logInfo = useAuth();
-  const [label, setLabel] = useState<string>("");
+  const [name, setName] = useState<string>("");
 
   const handleCreate = async () => {
-    const user_id = logInfo.user!.id;
+    const user_id = String(logInfo.user!.id);
     const parse = PeopleSchema.safeParse({
-      label,
+      name,
       user_id,
     });
+    console.log(parse);
 
     if (!parse.success) {
-      console.log(parse.error.format());
       Alert.alert("Validation Error", "Please check your inputs");
       return;
     }
     await store(parse.data);
-    console.log("Criar nova pessoa:", { label });
+    Alert.prompt("User created successfully!");
+    setName("");
+    console.log("Criar nova pessoa:", { name });
     router.push("/(admin)/peopleList");
   };
 
@@ -57,9 +59,9 @@ export default function PeopleManagement() {
           </View>
 
           <Input
-            label="label"
-            value={label}
-            handler={setLabel}
+            label="name"
+            value={name}
+            handler={setName}
             isPassword={false}
           />
           <Button content="Upload person’s video" onPress={handleCreate} />

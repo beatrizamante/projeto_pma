@@ -19,8 +19,8 @@ export default function DropDown({ label, value, handler }: DropdownProps) {
         onValueChange={(itemValue) => handler(itemValue as "user" | "admin")}
         style={{ height: 50 }}
       >
-        <Picker.Item label="User" value="USER" />
-        <Picker.Item label="Admin" value="ADMIN" />
+        <Picker.Item label="User" value="user" />
+        <Picker.Item label="Admin" value="admin" />
       </Picker>
     </View>
   );

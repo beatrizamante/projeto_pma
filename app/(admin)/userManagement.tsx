@@ -1,11 +1,10 @@
-import { View, Text, ScrollView, TouchableOpacity } from "react-native";
+import { View, Text, ScrollView, Image, TouchableOpacity } from "react-native";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "expo-router";
 import Button from "../../components/Button";
 import Footer from "../../components/Footer";
 import Input from "../../components/form/Input";
 import { useSelectedItem } from "../../stores/useSelectedItem";
-import Icon from "../../components/list/item/Icon";
 import {
   erase,
   get,
@@ -55,7 +54,6 @@ export default function UserManagement() {
 
   const handleUpdate = async () => {
     await patch(selectedId!, { name, email, password, role });
-    console.log("Atualizar usuário:", { name, email, role, password });
     clear();
     router.replace("/(admin)/userList");
   };
@@ -66,10 +64,12 @@ export default function UserManagement() {
   };
 
   const handleCreate = async () => {
+    console.log("Valores enviados:", { name, email, role, password });
+
     const parse = UserSchema.safeParse({
       name,
       email,
-      role,
+      role: role.toLowerCase(),
       password,
     });
 
@@ -136,7 +136,9 @@ export default function UserManagement() {
           {isEditing ? (
             <View className="flex flex-row justify-between items-center gap-4 mt-4">
               <Button content="Update user" onPress={handleUpdate} />
-              <Icon onPress={handleDelete} />
+              <TouchableOpacity className="w-7 h-7" onPress={handleDelete}>
+                <Image source={require("../../assets/Vector.png")} />
+              </TouchableOpacity>
             </View>
           ) : (
             <View className="mt-4">
