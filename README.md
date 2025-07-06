@@ -116,3 +116,7 @@ npm test
 - Created reusable components for: Buttons, Cards, Inputs, Lists, Modals, Footers, and Navbar;
 - Applied the same components between screens, keeping the  design UX standard;
 - Implemented component composition for navbar and lists, making a tree of children and custom props;
+
+##Data Management and Manipulation with SQLite;
+- Created methods and handlers to deal with data management;
+- Created .aab and .apk builds
