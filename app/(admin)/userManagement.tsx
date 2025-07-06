@@ -1,4 +1,11 @@
-import { View, Text, ScrollView, Image, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  ScrollView,
+  Image,
+  TouchableOpacity,
+  Alert,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "expo-router";
 import Button from "../../components/Button";
@@ -64,8 +71,6 @@ export default function UserManagement() {
   };
 
   const handleCreate = async () => {
-    console.log("Valores enviados:", { name, email, role, password });
-
     const parse = UserSchema.safeParse({
       name,
       email,
@@ -74,10 +79,9 @@ export default function UserManagement() {
     });
 
     if (!parse.success) {
-      console.log(parse.error.format());
+      Alert.alert("The values were not validated.");
       return;
     }
-
     await store(parse.data);
     clear();
     router.replace("/(admin)/userList");
