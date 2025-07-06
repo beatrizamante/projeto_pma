@@ -1,38 +1,56 @@
-import { View, Text, TouchableOpacity, ScrollView } from "react-native";
-import React from "react";
+import { View, Text, TouchableOpacity, ScrollView, Alert } from "react-native";
+import React, { useEffect } from "react";
 import Footer from "../components/Footer";
 import Input from "../components/form/Input";
 import Button from "../components/Button";
 import { useRouter } from "expo-router";
 import { useAuth } from "../stores/useAuth";
+import { findByName } from "../infrastructure/repository/UserRepository";
+import { makeDatabase } from "../infrastructure/makeDatabase";
+import User from "./interfaces/user";
 
 export default function Home() {
   const router = useRouter();
   const logInfo = useAuth((state) => state.login);
-
   const [login, onChangeLogin] = React.useState("");
   const [password, onChangePassword] = React.useState("");
-
   const [err, setErr] = React.useState("");
 
-  const handleLogin = () => {
-    if (login === "fulano" && password === "123") {
-      setErr("");
-      logInfo({
-        username: login,
-        role: "user",
-      });
-      router.replace("/(user)");
-    } else if (login === "admin" && password === "123") {
-      setErr("");
-      logInfo({
-        username: login,
-        role: "admin",
-      });
-      router.replace("/(admin)");
-    } else {
-      setErr("Invalid Login.");
+  useEffect(() => {
+    const setup = async () => {
+      await makeDatabase();
+      console.log("Tables created");
+    };
+    setup();
+  }, []);
+
+  const handleLogin = async () => {
+    const user: User | null = await findByName(login);
+
+    if (!user || user === null) {
+      Alert.alert("This user does not exist, please, create an account;");
+      return;
     }
+
+    if (password === user.password) {
+      setErr("");
+      logInfo({
+        id: user.id,
+        name: user.name,
+        role: user.role,
+      });
+    } else {
+      Alert.alert("Invalid login, please, check your password");
+    }
+
+    if (user.role === "user") {
+      setErr("");
+      router.replace("/(user)");
+    } else {
+      setErr("");
+      router.replace("/(admin)");
+    }
+    return;
   };
 
   const handleGoToSignUp = () => {
@@ -52,7 +70,7 @@ export default function Home() {
       >
         <View className="flex flex-col justify-center items-center gap-4">
           <Input
-            label="login"
+            label="username"
             value={login}
             handler={onChangeLogin}
             isPassword={false}

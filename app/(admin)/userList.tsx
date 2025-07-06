@@ -1,13 +1,24 @@
 import { View, Text, ScrollView } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "expo-router";
 import Button from "../../components/Button";
 import Footer from "../../components/Footer";
-import List from "../../components/list/item/List";
-import data from "../../mocks/names";
+import { list } from "../../infrastructure/repository/UserRepository";
+import List from "../../components/list/List";
+import User from "../interfaces/user";
 
 export default function userList() {
   const router = useRouter();
+  const [users, setUsers] = useState<User[]>([]);
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const allUsers = await list();
+      if (!allUsers) return;
+      setUsers(allUsers);
+    };
+    fetchUsers();
+  }, []);
 
   const createHandler = () => {
     router.push("/userManagement");
@@ -29,7 +40,7 @@ export default function userList() {
             <Text className="text-darker text-center text-lg font-semibold">
               Double click an user to edit:
             </Text>
-            <List data={data} navigateTo="/(admin)/userManagement" />
+            <List data={users} navigateTo="/(admin)/userManagement" />
             <Button content="Create new user!" onPress={createHandler} />
           </View>
         </View>

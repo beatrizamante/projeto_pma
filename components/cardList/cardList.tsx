@@ -3,12 +3,7 @@ import React from "react";
 import Card from "./item/item";
 
 type ListProps = {
-  data: {
-    id: number;
-    user: string;
-    date: string;
-    image_path: string;
-  }[];
+  data: any[];
   onDoubleClick: (id: string) => void;
 };
 

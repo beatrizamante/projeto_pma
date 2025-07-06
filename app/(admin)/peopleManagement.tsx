@@ -1,17 +1,36 @@
-import { View, Text, ScrollView, TouchableOpacity } from "react-native";
+import { View, Text, ScrollView, TouchableOpacity, Alert } from "react-native";
 import React, { useState } from "react";
 import { useRouter } from "expo-router";
 import Button from "../../components/Button";
 import Footer from "../../components/Footer";
 import Input from "../../components/form/Input";
+import {
+  PeopleSchema,
+  store,
+} from "../../infrastructure/repository/PeopleRepository";
+import { useAuth } from "../../stores/useAuth";
 
 export default function PeopleManagement() {
   const router = useRouter();
+  const logInfo = useAuth();
+  const [name, setName] = useState<string>("");
 
-  const [label, setLabel] = useState<string>("");
+  const handleCreate = async () => {
+    const user_id = String(logInfo.user!.id);
+    const parse = PeopleSchema.safeParse({
+      name,
+      user_id,
+    });
+    console.log(parse);
 
-  const handleCreate = () => {
-    console.log("Criar nova pessoa:", { label });
+    if (!parse.success) {
+      Alert.alert("Validation Error", "Please check your inputs");
+      return;
+    }
+    await store(parse.data);
+    Alert.prompt("User created successfully!");
+    setName("");
+    console.log("Criar nova pessoa:", { name });
     router.push("/(admin)/peopleList");
   };
 
@@ -40,9 +59,9 @@ export default function PeopleManagement() {
           </View>
 
           <Input
-            label="label"
-            value={label}
-            handler={setLabel}
+            label="name"
+            value={name}
+            handler={setName}
             isPassword={false}
           />
           <Button content="Upload person’s video" onPress={handleCreate} />

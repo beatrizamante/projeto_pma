@@ -1,16 +1,45 @@
 import { View, Text, ScrollView } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Footer from "../../components/Footer";
-import data from "../../mocks/names";
 import Button from "../../components/Button";
 import { useRouter } from "expo-router";
-import ListDelete from "../../components/list/item/DeleteList";
+import ListDelete from "../../components/list/DeleteList";
+import { erase, list } from "../../infrastructure/repository/PeopleRepository";
+import { useSelectedItem } from "../../stores/useSelectedItem";
+import ConfirmationModal from "../../components/ConfirmationModal";
+import Person from "../interfaces/person";
 
 export default function peopleList() {
   const router = useRouter();
+  const [people, setPeople] = useState<Person[]>([]);
+  const [idToDelete, setIdToDelete] = useState<string | null>(null);
+  const [confirmModalVisible, setConfirmModalVisible] = useState(false);
+
+  const fetchPeople = async () => {
+    const allPeople = await list();
+    if (!allPeople) return;
+    setPeople(allPeople);
+  };
+
+  useEffect(() => {
+    fetchPeople();
+  }, []);
+
+  const handleConfirmDelete = async () => {
+    if (!idToDelete) return;
+    await erase(idToDelete);
+    console.log("DELETE CONFIRMED!");
+    await fetchPeople();
+    setConfirmModalVisible(false);
+  };
 
   const createHandler = () => {
     router.push("/peopleManagement");
+  };
+
+  const handleDelete = (id: string) => {
+    setIdToDelete(id);
+    setConfirmModalVisible(true);
   };
 
   return (
@@ -29,12 +58,19 @@ export default function peopleList() {
             <Text className="text-darker text-center text-lg font-semibold">
               Click on the icon to delete:
             </Text>
-            <ListDelete data={data} />
+            <ListDelete data={people} handleDelete={handleDelete} />
             <Button content="Create new person!" onPress={createHandler} />
           </View>
         </View>
       </ScrollView>
       <Footer />
+
+      <ConfirmationModal
+        content="video"
+        visible={confirmModalVisible}
+        onConfirm={handleConfirmDelete}
+        onCancel={() => setConfirmModalVisible(false)}
+      />
     </>
   );
 }
